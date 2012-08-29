@@ -32,7 +32,7 @@ public class VendorController {
 	
 	// Lettura singolo Vendor
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
-	public ResponseEntity<String> showJson(@PathVariable("id") String id) {		
+	public ResponseEntity<String> showJson(@PathVariable("id") Integer id) {		
 		HttpStatus returnStatus = HttpStatus.OK;
 		JsonObjectResponse response = new JsonObjectResponse();
 

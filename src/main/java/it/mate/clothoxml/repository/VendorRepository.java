@@ -20,21 +20,24 @@ public class VendorRepository implements VendorRepInterface{
 	
 	private JdbcTemplate jdbcTemplate;
 	
-	public Vendor getVendor(String codice) {
-		Vendor vendor = new Vendor();
-		vendor.setCodice("cod01");
-		vendor.setNome("nome del Vendor");
+	public Vendor getVendor(Integer codice) {
+		
+		Vendor vendor = this.jdbcTemplate.queryForObject(
+		        "select codice, nome from vendor where codice = ?",
+		        new Object[]{codice},
+		        new VendorMapper() 
+		        );		
 		return vendor;
 	}
 	
 	public List<Vendor> findAllVendors() {
-		return this.jdbcTemplate.query( "select * from vendor", new VendorMapper());
+		return this.jdbcTemplate.query("select * from vendor", new VendorMapper());
 		}
 		
 	private static final class VendorMapper implements RowMapper<Vendor> {
 		public Vendor mapRow(ResultSet rs, int rowNum) throws SQLException{
 			Vendor vendor = new Vendor(); 
-			vendor.setCodice(rs.getString("codice")); 
+			vendor.setCodice(rs.getInt("codice")); 
 			vendor.setNome(rs.getString("nome"));
 			//vendor.setStrategy(Strategy.valueOf(rs.getString("strategy")));
 			return vendor; }

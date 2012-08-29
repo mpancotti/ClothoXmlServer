@@ -1,13 +1,13 @@
 package it.mate.clothoxml.domain;
 
 public class Vendor{
-    private String codice;
+    private Integer codice;
     private String nome;
     private Strategy strategy;
-	public String getCodice() {
+	public Integer getCodice() {
 		return codice;
 	}
-	public void setCodice(String codice) {
+	public void setCodice(Integer codice) {
 		this.codice = codice;
 	}
 	public String getNome() {
