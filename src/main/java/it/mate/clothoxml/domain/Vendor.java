@@ -1,5 +1,12 @@
 package it.mate.clothoxml.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collection;
+
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
+
 public class Vendor{
     private Integer codice;
     private String nome;
@@ -22,6 +29,18 @@ public class Vendor{
 	public void setStrategy(Strategy string) {
 		this.strategy = string;
 	}
+	
+    public static Vendor fromJsonToVendor(String json) {
+        return new JSONDeserializer<Vendor>().use(null, Vendor.class).deserialize(json);
+    }
+    
+    public static String toJsonArray(Collection<Vendor> collection) {
+        return new JSONSerializer().exclude("*.class").serialize(collection);
+    }
+    
+    public static Collection<Vendor> fromJsonArrayToVendors(String json) {
+        return new JSONDeserializer<List<Vendor>>().use(null, ArrayList.class).use("values", Vendor.class).deserialize(json);
+    }
 	
 	@Override
 	public int hashCode() {

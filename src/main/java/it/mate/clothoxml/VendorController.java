@@ -1,5 +1,6 @@
 package it.mate.clothoxml;
 
+import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import it.mate.clothoxml.domain.Vendor;
 import it.mate.clothoxml.repository.VendorRepInterface;
@@ -91,9 +92,11 @@ public class VendorController {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
 
 		JsonObjectResponse response = new JsonObjectResponse();
-		try {/*
-			 * Vendor record = Vendor.fromJsonToVendor(json); record.persist();
-			 */
+		try {
+			 //String test="{codice:198989, nome:'nome198989', strategy:'DESC'}";
+			 Vendor vendor = Vendor.fromJsonToVendor(json);
+			 vendorRepository.add(vendor);
+			 
 			returnStatus = HttpStatus.CREATED;
 			response.setMessage("Vendor created.");
 			response.setSuccess(true);
@@ -111,24 +114,17 @@ public class VendorController {
 
 	// Modifica di Vendor esistente
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}", headers = "Accept=application/json")
-	public ResponseEntity<String> updateFromJson(@RequestBody String json) {
+	public ResponseEntity<String> updateFromJson(@PathVariable("id") Integer id, @RequestBody String json) {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
-
 		JsonObjectResponse response = new JsonObjectResponse();
-		try {
-			/*
-			 * Vendor record = Vendor.fromJsonToVendor(json); Vendor
-			 * mergedRecord = (Vendor)record.merge(); if (mergedRecord == null)
-			 * { returnStatus = HttpStatus.NOT_FOUND;
-			 * response.setMessage("Vendor update failed.");
-			 * response.setSuccess(false); response.setTotal(0L); } else
-			 */{
+		try {			
+			   Vendor vendor = Vendor.fromJsonToVendor(json);
+			   vendorRepository.update(vendor,id);
 				returnStatus = HttpStatus.OK;
 				response.setMessage("Vendor updated.");
 				response.setSuccess(true);
 				response.setTotal(1L);
-				// response.setData(mergedRecord);
-			}
+			    response.setData(vendor);
 		} catch (Exception e) {
 			response.setMessage(e.getMessage());
 			response.setSuccess(false);
@@ -141,13 +137,13 @@ public class VendorController {
 
 	// Cancellazione di Vendor esistente
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-	public ResponseEntity<String> deleteFromJson(@PathVariable("id") Long id) {
+	public ResponseEntity<String> deleteFromJson(@PathVariable("id") Integer id) {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
 
 		JsonObjectResponse response = new JsonObjectResponse();
-		try {/*
-			 * Vendor record = Vendor.findVendor(id); record.remove();
-			 */
+		try {
+			
+			vendorRepository.delete(id);
 			returnStatus = HttpStatus.OK;
 			response.setMessage("Vendor deleted.");
 			response.setSuccess(true);
@@ -161,8 +157,7 @@ public class VendorController {
 
 		// Return just the deleted id
 		return new ResponseEntity<String>(new JSONSerializer()
-				.exclude("*.class").include("data.codice").exclude("data.*")
-				.serialize(response), returnStatus);
+				.exclude("*.class").serialize(response), returnStatus);
 	}
 
 }

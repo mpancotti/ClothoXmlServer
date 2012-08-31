@@ -41,6 +41,7 @@
         <beans:property name="timeBetweenEvictionRunsMillis" value="1800000"/>
         <beans:property name="numTestsPerEvictionRun" value="3"/>
         <beans:property name="minEvictableIdleTimeMillis" value="1800000"/>
+        <beans:property name="validationQuery" value ="SELECT 1+1" />
     </beans:bean>	
 	
 </beans:beans>
