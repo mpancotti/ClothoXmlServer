@@ -11,7 +11,8 @@ public class Vendor{
     private Integer codice;
     private String nome;
     private Strategy strategy;
-	public Integer getCodice() {
+	
+    public Integer getCodice() {
 		return codice;
 	}
 	public void setCodice(Integer codice) {
@@ -75,6 +76,14 @@ public class Vendor{
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return "Vendor [codice=" + codice + ", nome=" + nome + ", strategy="
+				+ strategy + "]";
+	}
+	
+	
     
     
 }
