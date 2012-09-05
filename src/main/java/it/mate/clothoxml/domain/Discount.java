@@ -23,12 +23,7 @@ public class Discount {
 	private Date updated_on;
 	private String updated_by;
 	private Integer version;
-	
-	
-
-	
-	
-	
+		
 	public Integer getId() {
 		return id;
 	}
