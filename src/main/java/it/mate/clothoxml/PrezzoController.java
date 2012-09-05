@@ -2,8 +2,8 @@ package it.mate.clothoxml;
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
-import it.mate.clothoxml.domain.Discount;
-import it.mate.clothoxml.repository.DiscountRepInterface;
+import it.mate.clothoxml.domain.Prezzo;
+import it.mate.clothoxml.repository.PrezzoRepInterface;
 
 import java.util.List;
 
@@ -21,35 +21,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Handles requests for the application home page.
  */
-@RequestMapping("/discounts")
+@RequestMapping("/prezzi")
 @Controller
-public class DiscountController {
+public class PrezzoController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(DiscountController.class);
+			.getLogger(PrezzoController.class);
 	
 	@Autowired
-	DiscountRepInterface discountRepository;
+	PrezzoRepInterface prezzoRepository;
 	
-	// Lettura singolo Discount
+	// Lettura singolo Prezzo
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public ResponseEntity<String> showJson(@PathVariable("id") Integer id) {		
 		HttpStatus returnStatus = HttpStatus.OK;
 		JsonObjectResponse response = new JsonObjectResponse();
 
 		try {
-			Discount discount = discountRepository.getDiscount(id);		
-			if (discount == null) {
+			Prezzo prezzo = prezzoRepository.getPrezzo(id);		
+			if (prezzo == null) {
 				returnStatus = HttpStatus.NOT_FOUND;
-				response.setMessage("Discount not found.");
+				response.setMessage("Prezzo not found.");
 				response.setSuccess(false);
 				response.setTotal(0L);
 			} else {
 				returnStatus = HttpStatus.OK;
-				response.setMessage("Discount found.");
+				response.setMessage("Prezzo found.");
 				response.setSuccess(true);
 				response.setTotal(1L);
-				response.setData(discount);
+				response.setData(prezzo);
 			}
 		} catch (Exception e) {
 			response.setMessage(e.getMessage());
@@ -60,16 +60,16 @@ public class DiscountController {
 				"*.class").serialize(response), returnStatus);
 	}
 
-	// Lettura di tutti i Discount
+	// Lettura di tutti i Prezzo
 	@RequestMapping(headers = "Accept=application/json")
 	public ResponseEntity<String> listJson() {
 		HttpStatus returnStatus = HttpStatus.OK;
 		JsonObjectResponse response = new JsonObjectResponse();
 
 		try {
-			List<Discount> records = discountRepository.findAllDiscounts();
+			List<Prezzo> records = prezzoRepository.findAllPrezzi();
 			returnStatus = HttpStatus.OK;
-			response.setMessage("All Discounts retrieved.");
+			response.setMessage("All Prezzi retrieved.");
 			response.setSuccess(true);
 			response.setTotal(records.size());
 			response.setData(records);
@@ -86,7 +86,7 @@ public class DiscountController {
 
 	}
 
-	// Creazione nuovo Discount
+	// Creazione nuovo Prezzo
 	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
 	public ResponseEntity<String> createFromJson(@RequestBody String json) {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
@@ -94,10 +94,10 @@ public class DiscountController {
 		JsonObjectResponse response = new JsonObjectResponse();
 		try {
 			 //String test="{codice:198989, nome:'nome198989', strategy:'DESC'}";
-			Discount discount = Discount.fromJsonToDiscount(json);
-			discountRepository.add(discount);
+			Prezzo prezzo = Prezzo.fromJsonToPrezzo(json);
+			prezzoRepository.add(prezzo);
 			returnStatus = HttpStatus.OK;
-			response.setMessage("Discount created.");
+			response.setMessage("Prezzo created.");
 			response.setSuccess(true);
 			response.setTotal(1L);
 			// response.setData(record);
@@ -111,19 +111,19 @@ public class DiscountController {
 				"*.class").serialize(response), returnStatus);
 	}
 
-	// Modifica di Discount esistente
+	// Modifica di Prezzo esistente
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}", headers = "Accept=application/json")
 	public ResponseEntity<String> updateFromJson(@PathVariable("id") Integer id, @RequestBody String json) {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
 		JsonObjectResponse response = new JsonObjectResponse();
 		try {			
-			   Discount discount = Discount.fromJsonToDiscount(json);
-			   discountRepository.update(discount,id);
+			   Prezzo prezzo = Prezzo.fromJsonToPrezzo(json);
+			   prezzoRepository.update(prezzo,id);
 				returnStatus = HttpStatus.OK;
-				response.setMessage("Discount updated.");
+				response.setMessage("Prezzo updated.");
 				response.setSuccess(true);
 				response.setTotal(1L);
-			    response.setData(discount);
+			    response.setData(prezzo);
 		} catch (Exception e) {
 			response.setMessage(e.getMessage());
 			response.setSuccess(false);
@@ -134,7 +134,7 @@ public class DiscountController {
 				"*.class").serialize(response), returnStatus);
 	}
 
-	// Cancellazione di Discount esistente
+	// Cancellazione di Prezzo esistente
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
 	public ResponseEntity<String> deleteFromJson(@PathVariable("id") Integer id) {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
@@ -142,9 +142,9 @@ public class DiscountController {
 		JsonObjectResponse response = new JsonObjectResponse();
 		try {
 			
-			discountRepository.delete(id);
+			prezzoRepository.delete(id);
 			returnStatus = HttpStatus.OK;
-			response.setMessage("Discount deleted.");
+			response.setMessage("Prezzo deleted.");
 			response.setSuccess(true);
 			response.setTotal(1L);
 			// response.setData(record);
