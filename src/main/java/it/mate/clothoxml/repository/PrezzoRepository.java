@@ -66,7 +66,7 @@ public class PrezzoRepository implements PrezzoRepInterface{
 		parameters.put("udated_by", prezzo.getUpdated_by());
 		parameters.put("version", prezzo.getVersion());
 		parameters.put("id_rule_fk", prezzo.getId_rule_fk());
-		jdbcInsertPrezzo.usingGeneratedKeyColumns("id").execute(parameters);
+		jdbcInsertPrezzo.execute(parameters);
 		
 	}
 	
@@ -120,7 +120,8 @@ public class PrezzoRepository implements PrezzoRepInterface{
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.jdbcInsertPrezzo = new SimpleJdbcInsert(dataSource).withTableName("prezzo");
+        this.jdbcInsertPrezzo = new SimpleJdbcInsert(dataSource).withTableName("prezzo").usingGeneratedKeyColumns("id");
+        this.jdbcInsertPrezzo.compile();
     }
 
 
