@@ -86,6 +86,20 @@ public class Rule {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
+	
+	 public static Rule fromJsonToRule(String json) {
+	        return new JSONDeserializer<Rule>().use(null, Rule.class).deserialize(json);
+	    }
+	    
+	    public static String toJsonArray(Collection<Rule> collection) {
+	        return new JSONSerializer().exclude("*.class").serialize(collection);
+	    }
+	    
+	    public static Collection<Rule>fromJsonArrayToPrezzi(String json) {
+	        return new JSONDeserializer<List<Rule>>().use(null, ArrayList.class).use("values", Rule.class).deserialize(json);
+	    }
+	    
+	    
 	@Override
 	public int hashCode() {
 		final int prime = 31;
