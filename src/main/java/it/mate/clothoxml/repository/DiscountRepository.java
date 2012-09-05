@@ -64,7 +64,7 @@ public class DiscountRepository implements DiscountRepInterface{
 		parameters.put("udated_by", discount.getUpdated_by());
 		parameters.put("version", discount.getVersion());
 		parameters.put("codice_vendor_fk", discount.getCodice_vendor_fk());
-		jdbcInsertDiscount.usingGeneratedKeyColumns("id").execute(parameters);
+		jdbcInsertDiscount.execute(parameters);
 		
 	}
 	
@@ -117,7 +117,8 @@ public class DiscountRepository implements DiscountRepInterface{
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        this.jdbcInsertDiscount = new SimpleJdbcInsert(dataSource).withTableName("discount");
+        this.jdbcInsertDiscount = new SimpleJdbcInsert(dataSource).withTableName("discount").usingGeneratedKeyColumns("id");
+        this.jdbcInsertDiscount.compile();
     }
 
 
