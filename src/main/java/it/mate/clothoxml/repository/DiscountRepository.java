@@ -50,7 +50,7 @@ public class DiscountRepository implements DiscountRepInterface{
 	 */
 	public void add(Discount discount){
 		Map<String,Object> parameters = new HashMap<String, Object>(14);
-		parameters.put("id", discount.getId());
+		//parameters.put("id", discount.getId());
 		parameters.put("from_discount", discount.getFrom_discount());
 		parameters.put("to_discount", discount.getTo_discount());
 		parameters.put("value_note_3", discount.getValue_note_3());
@@ -64,7 +64,7 @@ public class DiscountRepository implements DiscountRepInterface{
 		parameters.put("udated_by", discount.getUpdated_by());
 		parameters.put("version", discount.getVersion());
 		parameters.put("codice_vendor_fk", discount.getCodice_vendor_fk());
-		jdbcInsertDiscount.execute(parameters);
+		jdbcInsertDiscount.usingGeneratedKeyColumns("id").execute(parameters);
 		
 	}
 	
@@ -72,7 +72,7 @@ public class DiscountRepository implements DiscountRepInterface{
 	public void update(Discount discount, Integer id) {
 		this.jdbcTemplate.update("update discount set from_discount=?, to_discount=?,"+
 	"value_note_3=?, affiliato=?, affiliato_light=?, somministrato=?, scadenza=?, created_on=?, "+
-	"created_by=?, updated_on=?, updated_by=?, version=?, codice_vendor_fk=? where id=?",
+	"created_by=?, updated_on=?, up  dated_by=?, version=?, codice_vendor_fk=? where id=?",
 				discount.getFrom_discount(),discount.getTo_discount(),discount.getValue_note_3(),
 				discount.getAffiliato(),discount.getAffiliato_light(),discount.getSomministrato(),
 				discount.getScadenza(),discount.getCreated_on(),discount.getCreated_by(),discount.getUpdated_on(),
