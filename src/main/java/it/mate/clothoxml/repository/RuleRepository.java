@@ -28,14 +28,20 @@ public class RuleRepository implements RuleRepInterface{
 	/**
 	 * Get a single rule by primary key
 	 */
-	public Rule getRule(Integer id) {
-		
+	public Rule getRule(Integer id) {		
 		Rule rule = this.jdbcTemplate.queryForObject(
 		        "select * from rule where id = ?",
 		        new Object[]{id},
 		        new RuleMapper() 
 		        );		
 		return rule;
+	}
+	
+	@Override
+	public List<Rule> findRulesOfVendor(Vendor vendor) {
+		return this.jdbcTemplate.query("select * from rule where codice_vendor_fk = ?", 
+				new Object[]{vendor.getCodice()},
+				new RuleMapper());
 	}
 	
 	/**
@@ -114,6 +120,8 @@ public class RuleRepository implements RuleRepInterface{
         this.jdbcInsertRule = new SimpleJdbcInsert(dataSource).withTableName("rule").usingGeneratedKeyColumns("id");
         this.jdbcInsertRule.compile();
     }
+
+
 
 
 
