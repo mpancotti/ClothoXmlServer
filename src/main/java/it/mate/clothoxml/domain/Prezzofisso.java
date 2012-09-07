@@ -12,7 +12,7 @@ public class Prezzofisso{
 	private Integer id;
 	private Integer id_rule_fk;
 	private Float prezzo_fornitore;
-	private Float netto_lordo;
+	private String netto_lordo;
 	private Float affiliato;
 	private Float affiliato_light;
 	private Float somministrato;
@@ -40,10 +40,10 @@ public class Prezzofisso{
 	public void setPrezzo_fornitore(Float prezzo_fornitore) {
 		this.prezzo_fornitore = prezzo_fornitore;
 	}
-	public Float getNetto_lordo() {
+	public String getNetto_lordo() {
 		return netto_lordo;
 	}
-	public void setNetto_lordo(Float netto_lordo) {
+	public void setNetto_lordo(String netto_lordo) {
 		this.netto_lordo = netto_lordo;
 	}
 	public Float getAffiliato() {
@@ -113,113 +113,118 @@ public class Prezzofisso{
 	        return new JSONDeserializer<List<Prezzofisso>>().use(null, ArrayList.class).use("values", Prezzofisso.class).deserialize(json);
 	    }
 	
+	
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((affiliato == null) ? 0 : affiliato.hashCode());
-		result = prime * result
-				+ ((affiliato_light == null) ? 0 : affiliato_light.hashCode());
-		result = prime * result
-				+ ((created_by == null) ? 0 : created_by.hashCode());
-		result = prime * result
-				+ ((created_on == null) ? 0 : created_on.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((id_rule_fk == null) ? 0 : id_rule_fk.hashCode());
-		result = prime * result
-				+ ((netto_lordo == null) ? 0 : netto_lordo.hashCode());
-		result = prime
-				* result
-				+ ((prezzo_fornitore == null) ? 0 : prezzo_fornitore.hashCode());
-		result = prime * result
-				+ ((scadenza == null) ? 0 : scadenza.hashCode());
-		result = prime * result
-				+ ((somministrato == null) ? 0 : somministrato.hashCode());
-		result = prime * result
-				+ ((updated_by == null) ? 0 : updated_by.hashCode());
-		result = prime * result
-				+ ((updated_on == null) ? 0 : updated_on.hashCode());
-		result = prime * result + ((version == null) ? 0 : version.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result
+					+ ((affiliato == null) ? 0 : affiliato.hashCode());
+			result = prime
+					* result
+					+ ((affiliato_light == null) ? 0 : affiliato_light
+							.hashCode());
+			result = prime * result
+					+ ((created_by == null) ? 0 : created_by.hashCode());
+			result = prime * result
+					+ ((created_on == null) ? 0 : created_on.hashCode());
+			result = prime * result + ((id == null) ? 0 : id.hashCode());
+			result = prime * result
+					+ ((id_rule_fk == null) ? 0 : id_rule_fk.hashCode());
+			result = prime * result
+					+ ((netto_lordo == null) ? 0 : netto_lordo.hashCode());
+			result = prime
+					* result
+					+ ((prezzo_fornitore == null) ? 0 : prezzo_fornitore
+							.hashCode());
+			result = prime * result
+					+ ((scadenza == null) ? 0 : scadenza.hashCode());
+			result = prime * result
+					+ ((somministrato == null) ? 0 : somministrato.hashCode());
+			result = prime * result
+					+ ((updated_by == null) ? 0 : updated_by.hashCode());
+			result = prime * result
+					+ ((updated_on == null) ? 0 : updated_on.hashCode());
+			result = prime * result
+					+ ((version == null) ? 0 : version.hashCode());
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Prezzofisso other = (Prezzofisso) obj;
+			if (affiliato == null) {
+				if (other.affiliato != null)
+					return false;
+			} else if (!affiliato.equals(other.affiliato))
+				return false;
+			if (affiliato_light == null) {
+				if (other.affiliato_light != null)
+					return false;
+			} else if (!affiliato_light.equals(other.affiliato_light))
+				return false;
+			if (created_by == null) {
+				if (other.created_by != null)
+					return false;
+			} else if (!created_by.equals(other.created_by))
+				return false;
+			if (created_on == null) {
+				if (other.created_on != null)
+					return false;
+			} else if (!created_on.equals(other.created_on))
+				return false;
+			if (id == null) {
+				if (other.id != null)
+					return false;
+			} else if (!id.equals(other.id))
+				return false;
+			if (id_rule_fk == null) {
+				if (other.id_rule_fk != null)
+					return false;
+			} else if (!id_rule_fk.equals(other.id_rule_fk))
+				return false;
+			if (netto_lordo == null) {
+				if (other.netto_lordo != null)
+					return false;
+			} else if (!netto_lordo.equals(other.netto_lordo))
+				return false;
+			if (prezzo_fornitore == null) {
+				if (other.prezzo_fornitore != null)
+					return false;
+			} else if (!prezzo_fornitore.equals(other.prezzo_fornitore))
+				return false;
+			if (scadenza == null) {
+				if (other.scadenza != null)
+					return false;
+			} else if (!scadenza.equals(other.scadenza))
+				return false;
+			if (somministrato == null) {
+				if (other.somministrato != null)
+					return false;
+			} else if (!somministrato.equals(other.somministrato))
+				return false;
+			if (updated_by == null) {
+				if (other.updated_by != null)
+					return false;
+			} else if (!updated_by.equals(other.updated_by))
+				return false;
+			if (updated_on == null) {
+				if (other.updated_on != null)
+					return false;
+			} else if (!updated_on.equals(other.updated_on))
+				return false;
+			if (version == null) {
+				if (other.version != null)
+					return false;
+			} else if (!version.equals(other.version))
+				return false;
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Prezzofisso other = (Prezzofisso) obj;
-		if (affiliato == null) {
-			if (other.affiliato != null)
-				return false;
-		} else if (!affiliato.equals(other.affiliato))
-			return false;
-		if (affiliato_light == null) {
-			if (other.affiliato_light != null)
-				return false;
-		} else if (!affiliato_light.equals(other.affiliato_light))
-			return false;
-		if (created_by == null) {
-			if (other.created_by != null)
-				return false;
-		} else if (!created_by.equals(other.created_by))
-			return false;
-		if (created_on == null) {
-			if (other.created_on != null)
-				return false;
-		} else if (!created_on.equals(other.created_on))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (id_rule_fk == null) {
-			if (other.id_rule_fk != null)
-				return false;
-		} else if (!id_rule_fk.equals(other.id_rule_fk))
-			return false;
-		if (netto_lordo == null) {
-			if (other.netto_lordo != null)
-				return false;
-		} else if (!netto_lordo.equals(other.netto_lordo))
-			return false;
-		if (prezzo_fornitore == null) {
-			if (other.prezzo_fornitore != null)
-				return false;
-		} else if (!prezzo_fornitore.equals(other.prezzo_fornitore))
-			return false;
-		if (scadenza == null) {
-			if (other.scadenza != null)
-				return false;
-		} else if (!scadenza.equals(other.scadenza))
-			return false;
-		if (somministrato == null) {
-			if (other.somministrato != null)
-				return false;
-		} else if (!somministrato.equals(other.somministrato))
-			return false;
-		if (updated_by == null) {
-			if (other.updated_by != null)
-				return false;
-		} else if (!updated_by.equals(other.updated_by))
-			return false;
-		if (updated_on == null) {
-			if (other.updated_on != null)
-				return false;
-		} else if (!updated_on.equals(other.updated_on))
-			return false;
-		if (version == null) {
-			if (other.version != null)
-				return false;
-		} else if (!version.equals(other.version))
-			return false;
-		return true;
-	}
+		}
 	@Override
 	public String toString() {
 		return "Prezzofisso [id=" + id + ", id_rule_fk=" + id_rule_fk

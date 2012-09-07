@@ -96,7 +96,7 @@ public class PrezzofissoRepository implements PrezzofissoRepInterface{
 			Prezzofisso prezzofisso = new Prezzofisso(); 
 			prezzofisso.setId(rs.getInt("id")); 
 			prezzofisso.setPrezzo_fornitore(rs.getFloat("prezzo_fornitore"));
-			prezzofisso.setNetto_lordo(rs.getFloat("netto_lordo"));
+			prezzofisso.setNetto_lordo(rs.getString("netto_lordo"));
 			prezzofisso.setAffiliato(rs.getFloat("affiliato"));
 			prezzofisso.setAffiliato_light(rs.getFloat("affiliato_light"));
 			prezzofisso.setSomministrato(rs.getFloat("somministrato"));
