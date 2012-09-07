@@ -1,0 +1,21 @@
+# da dove prendo il file
+#input.file=c:/Clotho/conf/CodeRules.xml
+input.file=/Users/marco/JavaProjects/clotho/conf/CodeRules.xml
+# dove metto gli excel
+output.dir=/Users/marco/JavaProjects/clotho/conf/etl/out
+#output.dir=c:/etl/out
+# dove copio il file quando clicco su deploy 
+# ATTENZIONE e' il nome di un file, non una dir
+deploy.file=/Users/marco/JavaProjects/clotho/etl/out/CodeRules.xml
+#deploy.file=c:/etl/out/CodeRules.xml
+# reader.r=r significa che username r pass r danno un reader
+reader.r=r
+# writer.w=w significa che username w pass w danno un writer
+writer.w=w
+reader.michele=michele
+writer.marco=marco
+# il file rifatturazione
+#rifatturazione.mdb=c:/etl/rifatturazione.mdb
+rifatturazione.mdb=/Users/marco/JavaProjects/clotho/etl/rifatturazione.mdb
+clotho.home=CLOTHOTEST_HOME
+#clotho.home==CLOTHO_HOME

@@ -39,11 +39,20 @@ public class DiscountRepository implements DiscountRepInterface{
 	}
 	
 	/**
-	 * Get all the vendors
+	 * Get all the discounts
 	 */
 	public List<Discount> findAllDiscounts() {
 		return this.jdbcTemplate.query("select * from discount", new DiscountMapper());
 		}
+	
+	/**
+	 * Get discounts connected with a specific vendor
+	 */
+	public List<Discount> findDiscountOfVendor(Vendor vendor){
+		return this.jdbcTemplate.query("select * from discount where codice_vendor_fk = ?",
+				new Object[] {vendor.getCodice()},
+				new DiscountMapper());
+	}
 	
 	/**
 	 * Insert a Vendor
