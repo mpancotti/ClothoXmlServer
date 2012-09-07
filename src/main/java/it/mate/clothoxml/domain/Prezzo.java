@@ -13,8 +13,7 @@ public class Prezzo{
 	private Integer id_rule_fk;
 	private Float prezzo_from;
 	private Float prezzo_to;
-	private Float netto_lordo;
-	private Float prezzoPrezzoNL;
+	private String netto_lordo;
 	private Float prezzo_affiliato;
 	private Float prezzo_affiliato_light;
 	private Float prezzo_somministrato;
@@ -48,17 +47,11 @@ public class Prezzo{
 	public void setPrezzo_to(Float prezzo_to) {
 		this.prezzo_to = prezzo_to;
 	}
-	public Float getNetto_lordo() {
+	public String getNetto_lordo() {
 		return netto_lordo;
 	}
-	public void setNetto_lordo(Float netto_lordo) {
+	public void setNetto_lordo(String netto_lordo) {
 		this.netto_lordo = netto_lordo;
-	}
-	public Float getPrezzoPrezzoNL() {
-		return prezzoPrezzoNL;
-	}
-	public void setPrezzoPrezzoNL(Float prezzoPrezzoNL) {
-		this.prezzoPrezzoNL = prezzoPrezzoNL;
 	}
 	public Float getPrezzo_affiliato() {
 		return prezzo_affiliato;
@@ -140,8 +133,6 @@ public class Prezzo{
 				+ ((id_rule_fk == null) ? 0 : id_rule_fk.hashCode());
 		result = prime * result
 				+ ((netto_lordo == null) ? 0 : netto_lordo.hashCode());
-		result = prime * result
-				+ ((prezzoPrezzoNL == null) ? 0 : prezzoPrezzoNL.hashCode());
 		result = prime
 				* result
 				+ ((prezzo_affiliato == null) ? 0 : prezzo_affiliato.hashCode());
@@ -200,11 +191,6 @@ public class Prezzo{
 				return false;
 		} else if (!netto_lordo.equals(other.netto_lordo))
 			return false;
-		if (prezzoPrezzoNL == null) {
-			if (other.prezzoPrezzoNL != null)
-				return false;
-		} else if (!prezzoPrezzoNL.equals(other.prezzoPrezzoNL))
-			return false;
 		if (prezzo_affiliato == null) {
 			if (other.prezzo_affiliato != null)
 				return false;
@@ -256,13 +242,14 @@ public class Prezzo{
 	public String toString() {
 		return "Prezzo [id=" + id + ", id_rule_fk=" + id_rule_fk
 				+ ", prezzo_from=" + prezzo_from + ", prezzo_to=" + prezzo_to
-				+ ", netto_lordo=" + netto_lordo + ", prezzoPrezzoNL="
-				+ prezzoPrezzoNL + ", prezzo_affiliato=" + prezzo_affiliato
-				+ ", prezzo_affiliato_light=" + prezzo_affiliato_light
-				+ ", prezzo_somministrato=" + prezzo_somministrato
-				+ ", scadenza=" + scadenza + ", created_on=" + created_on
-				+ ", created_by=" + created_by + ", updated_on=" + updated_on
-				+ ", updated_by=" + updated_by + ", version=" + version + "]";
+				+ ", netto_lordo=" + netto_lordo + ", prezzo_affiliato="
+				+ prezzo_affiliato + ", prezzo_affiliato_light="
+				+ prezzo_affiliato_light + ", prezzo_somministrato="
+				+ prezzo_somministrato + ", scadenza=" + scadenza
+				+ ", created_on=" + created_on + ", created_by=" + created_by
+				+ ", updated_on=" + updated_on + ", updated_by=" + updated_by
+				+ ", version=" + version + "]";
 	}
+
 	
 }

@@ -68,6 +68,7 @@ public class RuleRepository implements RuleRepInterface{
 		parameters.put("udated_by", rule.getUpdated_by());
 		parameters.put("version", rule.getVersion());
 		parameters.put("codice_vendor_fk", rule.getCodice_vendor_fk());
+		parameters.put("sequenza", rule.getSequenza());
 		jdbcInsertRule.execute(parameters);
 		
 	}
@@ -76,10 +77,10 @@ public class RuleRepository implements RuleRepInterface{
 	public void update(Rule rule, Integer id) {
 		this.jdbcTemplate.update("update rule set regexp=?, strategy=?,"+
 	"valore_note_3=?, scadenza=?, created_on=?, "+
-	"created_by=?, updated_on=?, up  dated_by=?, version=?, codice_vendor_fk=? where id=?",
+	"created_by=?, updated_on=?, up  dated_by=?, version=?, codice_vendor_fk=?, sequenza=? where id=?",
 				rule.getRegexp(),rule.getStrategy(),rule.getValore_note_3(),
 				rule.getScadenza(),rule.getCreated_on(),rule.getCreated_by(),rule.getUpdated_on(),
-				rule.getUpdated_by(),rule.getVersion(),rule.getCodice_vendor_fk(),id);
+				rule.getUpdated_by(),rule.getVersion(),rule.getCodice_vendor_fk(), rule.getSequenza(), id);
 	}
 	
 	@Override
@@ -108,6 +109,7 @@ public class RuleRepository implements RuleRepInterface{
 			rule.setUpdated_on(rs.getDate("updated_on"));
 			rule.setUpdated_by(rs.getString("updated_by"));
 			rule.setVersion(rs.getInt("version"));
+			rule.setSequenza(rs.getInt("sequenza"));
 			return rule; }
 		}
 	

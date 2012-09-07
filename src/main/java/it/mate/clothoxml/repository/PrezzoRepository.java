@@ -55,7 +55,6 @@ public class PrezzoRepository implements PrezzoRepInterface{
 		parameters.put("prezzo_from", prezzo.getPrezzo_from());
 		parameters.put("prezzo_to", prezzo.getPrezzo_to());
 		parameters.put("netto_lordo", prezzo.getNetto_lordo());
-		parameters.put("prezzoPrezzoNL", prezzo.getPrezzoPrezzoNL());
 		parameters.put("prezzo_affiliato", prezzo.getPrezzo_affiliato());
 		parameters.put("prezzo_affiliato_light", prezzo.getPrezzo_affiliato_light());
 		parameters.put("prezzo_somministrato", prezzo.getPrezzo_somministrato());
@@ -75,7 +74,7 @@ public class PrezzoRepository implements PrezzoRepInterface{
 		this.jdbcTemplate.update("update prezzo set prezzo_from=?, prezzo_to=?,"+
 	"netto_lordo=?, prezzoPrezzoNL=?, prezzo_affiliato=?, prezzo_affiliato_light=?, prezzo_somministrato=?, scadenza=?, created_on=?, "+
 	"created_by=?, updated_on=?, up  dated_by=?, version=?, id_rule_fk=? where id=?",
-				prezzo.getPrezzo_from(),prezzo.getPrezzo_to(),prezzo.getNetto_lordo(), prezzo.getPrezzoPrezzoNL(),
+				prezzo.getPrezzo_from(),prezzo.getPrezzo_to(),prezzo.getNetto_lordo(),
 				prezzo.getPrezzo_affiliato(),prezzo.getPrezzo_affiliato_light(),prezzo.getPrezzo_somministrato(),
 				prezzo.getScadenza(),prezzo.getCreated_on(),prezzo.getCreated_by(),prezzo.getUpdated_on(),
 				prezzo.getUpdated_by(),prezzo.getVersion(),prezzo.getId_rule_fk(),id);
@@ -99,8 +98,7 @@ public class PrezzoRepository implements PrezzoRepInterface{
 			prezzo.setId(rs.getInt("id")); 
 			prezzo.setPrezzo_from(rs.getFloat("prezzo_from"));
 			prezzo.setPrezzo_to(rs.getFloat("prezzo_to"));
-			prezzo.setNetto_lordo(rs.getFloat("netto_lordo"));
-			prezzo.setPrezzoPrezzoNL(rs.getFloat("prezzoPrezzoNL"));
+			prezzo.setNetto_lordo(rs.getString("netto_lordo"));
 			prezzo.setPrezzo_affiliato(rs.getFloat("prezzo_affiliato"));
 			prezzo.setPrezzo_affiliato_light(rs.getFloat("prezzo_affiliato_light"));
 			prezzo.setPrezzo_somministrato(rs.getFloat("prezzo_somministrato"));
