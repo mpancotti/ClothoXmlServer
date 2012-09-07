@@ -20,6 +20,9 @@ public class Rule {
 	private Date updated_on;
 	private String updated_by;
 	private Integer version;
+	private Integer sequenza;
+	
+
 	public Integer getId() {
 		return id;
 	}
@@ -98,109 +101,127 @@ public class Rule {
 	    public static Collection<Rule>fromJsonArrayToPrezzi(String json) {
 	        return new JSONDeserializer<List<Rule>>().use(null, ArrayList.class).use("values", Rule.class).deserialize(json);
 	    }
-	    
-	    
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime
-				* result
-				+ ((codice_vendor_fk == null) ? 0 : codice_vendor_fk.hashCode());
-		result = prime * result
-				+ ((created_by == null) ? 0 : created_by.hashCode());
-		result = prime * result
-				+ ((created_on == null) ? 0 : created_on.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((regexp == null) ? 0 : regexp.hashCode());
-		result = prime * result
-				+ ((scadenza == null) ? 0 : scadenza.hashCode());
-		result = prime * result
-				+ ((strategy == null) ? 0 : strategy.hashCode());
-		result = prime * result
-				+ ((updated_by == null) ? 0 : updated_by.hashCode());
-		result = prime * result
-				+ ((updated_on == null) ? 0 : updated_on.hashCode());
-		result = prime * result
-				+ ((valore_note_3 == null) ? 0 : valore_note_3.hashCode());
-		result = prime * result + ((version == null) ? 0 : version.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	
+		public Integer getSequenza() {
+			return sequenza;
+		}
+		public void setSequenza(Integer sequenza) {
+			this.sequenza = sequenza;
+		}
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime
+					* result
+					+ ((codice_vendor_fk == null) ? 0 : codice_vendor_fk
+							.hashCode());
+			result = prime * result
+					+ ((created_by == null) ? 0 : created_by.hashCode());
+			result = prime * result
+					+ ((created_on == null) ? 0 : created_on.hashCode());
+			result = prime * result + ((id == null) ? 0 : id.hashCode());
+			result = prime * result
+					+ ((regexp == null) ? 0 : regexp.hashCode());
+			result = prime * result
+					+ ((scadenza == null) ? 0 : scadenza.hashCode());
+			result = prime * result
+					+ ((sequenza == null) ? 0 : sequenza.hashCode());
+			result = prime * result
+					+ ((strategy == null) ? 0 : strategy.hashCode());
+			result = prime * result
+					+ ((updated_by == null) ? 0 : updated_by.hashCode());
+			result = prime * result
+					+ ((updated_on == null) ? 0 : updated_on.hashCode());
+			result = prime * result
+					+ ((valore_note_3 == null) ? 0 : valore_note_3.hashCode());
+			result = prime * result
+					+ ((version == null) ? 0 : version.hashCode());
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Rule other = (Rule) obj;
+			if (codice_vendor_fk == null) {
+				if (other.codice_vendor_fk != null)
+					return false;
+			} else if (!codice_vendor_fk.equals(other.codice_vendor_fk))
+				return false;
+			if (created_by == null) {
+				if (other.created_by != null)
+					return false;
+			} else if (!created_by.equals(other.created_by))
+				return false;
+			if (created_on == null) {
+				if (other.created_on != null)
+					return false;
+			} else if (!created_on.equals(other.created_on))
+				return false;
+			if (id == null) {
+				if (other.id != null)
+					return false;
+			} else if (!id.equals(other.id))
+				return false;
+			if (regexp == null) {
+				if (other.regexp != null)
+					return false;
+			} else if (!regexp.equals(other.regexp))
+				return false;
+			if (scadenza == null) {
+				if (other.scadenza != null)
+					return false;
+			} else if (!scadenza.equals(other.scadenza))
+				return false;
+			if (sequenza == null) {
+				if (other.sequenza != null)
+					return false;
+			} else if (!sequenza.equals(other.sequenza))
+				return false;
+			if (strategy == null) {
+				if (other.strategy != null)
+					return false;
+			} else if (!strategy.equals(other.strategy))
+				return false;
+			if (updated_by == null) {
+				if (other.updated_by != null)
+					return false;
+			} else if (!updated_by.equals(other.updated_by))
+				return false;
+			if (updated_on == null) {
+				if (other.updated_on != null)
+					return false;
+			} else if (!updated_on.equals(other.updated_on))
+				return false;
+			if (valore_note_3 == null) {
+				if (other.valore_note_3 != null)
+					return false;
+			} else if (!valore_note_3.equals(other.valore_note_3))
+				return false;
+			if (version == null) {
+				if (other.version != null)
+					return false;
+			} else if (!version.equals(other.version))
+				return false;
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Rule other = (Rule) obj;
-		if (codice_vendor_fk == null) {
-			if (other.codice_vendor_fk != null)
-				return false;
-		} else if (!codice_vendor_fk.equals(other.codice_vendor_fk))
-			return false;
-		if (created_by == null) {
-			if (other.created_by != null)
-				return false;
-		} else if (!created_by.equals(other.created_by))
-			return false;
-		if (created_on == null) {
-			if (other.created_on != null)
-				return false;
-		} else if (!created_on.equals(other.created_on))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (regexp == null) {
-			if (other.regexp != null)
-				return false;
-		} else if (!regexp.equals(other.regexp))
-			return false;
-		if (scadenza == null) {
-			if (other.scadenza != null)
-				return false;
-		} else if (!scadenza.equals(other.scadenza))
-			return false;
-		if (strategy == null) {
-			if (other.strategy != null)
-				return false;
-		} else if (!strategy.equals(other.strategy))
-			return false;
-		if (updated_by == null) {
-			if (other.updated_by != null)
-				return false;
-		} else if (!updated_by.equals(other.updated_by))
-			return false;
-		if (updated_on == null) {
-			if (other.updated_on != null)
-				return false;
-		} else if (!updated_on.equals(other.updated_on))
-			return false;
-		if (valore_note_3 == null) {
-			if (other.valore_note_3 != null)
-				return false;
-		} else if (!valore_note_3.equals(other.valore_note_3))
-			return false;
-		if (version == null) {
-			if (other.version != null)
-				return false;
-		} else if (!version.equals(other.version))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "Rule [id=" + id + ", regexp=" + regexp + ", strategy="
-				+ strategy + ", valore_note_3=" + valore_note_3 + ", scadenza="
-				+ scadenza + ", codice_vendor_fk=" + codice_vendor_fk
-				+ ", created_on=" + created_on + ", created_by=" + created_by
-				+ ", updated_on=" + updated_on + ", updated_by=" + updated_by
-				+ ", version=" + version + "]";
-	}
+		}
+		@Override
+		public String toString() {
+			return "Rule [id=" + id + ", regexp=" + regexp + ", strategy="
+					+ strategy + ", valore_note_3=" + valore_note_3
+					+ ", scadenza=" + scadenza + ", codice_vendor_fk="
+					+ codice_vendor_fk + ", created_on=" + created_on
+					+ ", created_by=" + created_by + ", updated_on="
+					+ updated_on + ", updated_by=" + updated_by + ", version="
+					+ version + ", sequenza=" + sequenza + "]";
+		}
+	    
+	
 
 	
 }
