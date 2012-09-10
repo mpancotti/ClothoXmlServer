@@ -63,7 +63,13 @@ Ext.define('ClothoExtXml.view.MainToolbar', {
                     xtype: 'button',
                     id: 'maintoolbar-delete-btn',
                     iconCls: 'file_delete',
-                    text: 'Cancella'
+                    text: 'Cancella',
+                    listeners: {
+                        click: {
+                            fn: me.removeRecord,
+                            scope: me
+                        }
+                    }
                 },
                 {
                     xtype: 'button',
@@ -78,9 +84,11 @@ Ext.define('ClothoExtXml.view.MainToolbar', {
     },
 
     addRecord: function(button, e, options) {
-        console.log(ClothoExtXml.controller.GlobalVariables.getCurrentForm());
-        console.log(ClothoExtXml.controller.GlobalVariables.getCurrentGrid());
-        console.log(ClothoExtXml.controller.GlobalVariables.getCurrentRecord());
+        ClothoExtXml.controller.GlobalVariables.addCurrentRecord();
+    },
+
+    removeRecord: function(button, e, options) {
+        ClothoExtXml.controller.GlobalVariables.removeCurrentRecord();
     }
 
 });

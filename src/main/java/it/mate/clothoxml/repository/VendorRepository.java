@@ -19,6 +19,11 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Repository for Vendor Entity
+ * @author marco
+ *
+ */
 @Repository
 public class VendorRepository implements VendorRepInterface{
 	
@@ -57,6 +62,9 @@ public class VendorRepository implements VendorRepInterface{
 		
 	}
 	
+	/**
+	 * Update Vendor data
+	 */
 	@Override
 	public void update(Vendor vendor, Integer codice) {
 		this.jdbcTemplate.update("update vendor set nome=?, strategy=? where codice=?",
@@ -64,6 +72,9 @@ public class VendorRepository implements VendorRepInterface{
 		
 	}
 	
+	/**
+	 * Delete specified vendor
+	 */
 	@Override
 	public void delete(Integer codice) {
 		this.jdbcTemplate.update("delete from vendor where codice=?",codice);
@@ -85,7 +96,7 @@ public class VendorRepository implements VendorRepInterface{
 			return vendor; }
 		}
 	
-	/*
+	/**
 	 * Set the datasource for the Repository
 	 */
     @Autowired

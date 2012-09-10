@@ -87,13 +87,12 @@ public class VendorController {
 	}
 
 	// Creazione nuovo Vendor
-	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/{id}",method = RequestMethod.POST, headers = "Accept=application/json")
 	public ResponseEntity<String> createFromJson(@RequestBody String json) {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
 
 		JsonObjectResponse response = new JsonObjectResponse();
 		try {
-			 //String test="{codice:198989, nome:'nome198989', strategy:'DESC'}";
 			 Vendor vendor = Vendor.fromJsonToVendor(json);
 			 vendorRepository.add(vendor);
 			 

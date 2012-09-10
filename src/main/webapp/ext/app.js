@@ -27,7 +27,8 @@ Ext.application({
         'PrezzoFisso',
         'Rule',
         'Sconto',
-        'Vendor'
+        'Vendor',
+        'Strategy'
     ],
     stores: [
         'Discounts',
@@ -35,14 +36,19 @@ Ext.application({
         'PrezziFissi',
         'Rules',
         'Sconti',
-        'Vendors'
+        'Vendors',
+        'Strategy'
     ],
     views: [
         'BasicDataGrid',
         'VendorDataPanel',
         'RulesAreaPanel',
         'MainToolbar',
-        'VendorArea'
+        'VendorArea',
+        'VendorForm',
+        'VendorGridPaneL',
+        'RuleGidPanel',
+        'RuleForm'
     ],
     autoCreateViewport: true,
     name: 'ClothoExtXml',
@@ -50,5 +56,10 @@ Ext.application({
         'Rules',
         'Vendors',
         'FocusController'
-    ]
+    ],
+
+    launch: function() {
+        Ext.getCmp('vendorGridPanel').getSelectionModel().select(0)
+    }
+
 });

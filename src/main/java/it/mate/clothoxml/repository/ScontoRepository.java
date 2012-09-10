@@ -19,6 +19,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Repository for Sconto Entity
+ * @author marco
+ */
 @Repository
 public class ScontoRepository implements ScontoRepInterface{
 	
@@ -39,14 +43,14 @@ public class ScontoRepository implements ScontoRepInterface{
 	}
 	
 	/**
-	 * Get all the vendors
+	 * Get all the sconto
 	 */
 	public List<Sconto> findAllScontos() {
 		return this.jdbcTemplate.query("select * from sconto", new ScontoMapper());
 		}
 	
 	/**
-	 * Insert a Vendor
+	 * Insert a Sconto
 	 */
 	public void add(Sconto sconto){
 		Map<String,Object> parameters = new HashMap<String, Object>(14);
@@ -71,6 +75,9 @@ public class ScontoRepository implements ScontoRepInterface{
 		
 	}
 	
+	/**
+	 * Update a sconto
+	 */
 	@Override
 	public void update(Sconto sconto, Integer id) {
 		this.jdbcTemplate.update("update sconto set sconto_fornitore=?, tolleranza=?,"+
@@ -84,6 +91,9 @@ public class ScontoRepository implements ScontoRepInterface{
 				sconto.getUpdated_by(),sconto.getVersion(),sconto.getId_rule_fk(),id);
 	}
 	
+	/**
+	 * Delete a sconto
+	 */
 	@Override
 	public void delete(Integer id) {
 		this.jdbcTemplate.update("delete from sconto where id=?",id);
@@ -92,7 +102,7 @@ public class ScontoRepository implements ScontoRepInterface{
 
 	
 	/**
-	 * Mapping method of the class
+	 * Mapping method of the class Sconto
 	 * @author marco
 	 *
 	 */
@@ -119,7 +129,7 @@ public class ScontoRepository implements ScontoRepInterface{
 			return sconto; }
 		}
 	
-	/*
+	/**
 	 * Set the datasource for the Repository
 	 */
     @Autowired

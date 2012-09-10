@@ -1,0 +1,5 @@
+{ success:true, 
+data:[ 
+{ codice: 12345, nome: 'Safilo', strategy: 'CODE' }, { codice: 23456, nome: 'Luxottica', strategy: 'DESC' }, { codice: 34567, nome: 'Rodenstock',
+strategy: 'DESCCODE' }, { codice: 45678, nome: 'Hoya', strategy: 'CODEDESC' } 
+] }

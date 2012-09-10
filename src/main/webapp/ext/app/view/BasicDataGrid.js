@@ -18,9 +18,10 @@ Ext.define('ClothoExtXml.view.BasicDataGrid', {
     alias: 'widget.basicDataGrid',
 
     height: 205,
-    id: 'basicDataPanel',
+    id: 'discountDataPanel',
     width: 748,
     title: 'Basic Data',
+    store: 'Discounts',
 
     initComponent: function() {
         var me = this;

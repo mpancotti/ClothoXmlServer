@@ -17,6 +17,11 @@ Ext.define('ClothoExtXml.view.VendorArea', {
     extend: 'Ext.container.Container',
     alias: 'widget.vendorArea',
 
+    requires: [
+        'ClothoExtXml.view.VendorForm',
+        'ClothoExtXml.view.VendorGridPanel'
+    ],
+
     layout: {
         align: 'stretch',
         type: 'vbox'
@@ -30,7 +35,7 @@ Ext.define('ClothoExtXml.view.VendorArea', {
                 {
                     xtype: 'container',
                     height: 200,
-                    hidden: false,
+                    hidden: true,
                     id: 'vendorFormContainer',
                     maxHeight: 200,
                     minHeight: 200,
@@ -40,84 +45,8 @@ Ext.define('ClothoExtXml.view.VendorArea', {
                     },
                     items: [
                         {
-                            xtype: 'form',
-                            flex: 1,
-                            bodyPadding: 10,
-                            title: 'Gestione  Fornitore',
-                            items: [
-                                {
-                                    xtype: 'fieldset',
-                                    title: 'Dati generali del fornitore',
-                                    items: [
-                                        {
-                                            xtype: 'numberfield',
-                                            anchor: '100%',
-                                            name: 'codice',
-                                            fieldLabel: 'Codice',
-                                            labelAlign: 'right',
-                                            labelWidth: 50,
-                                            hideTrigger: true,
-                                            spinDownEnabled: false,
-                                            spinUpEnabled: false,
-                                            allowDecimals: false,
-                                            decimalPrecision: 0
-                                        },
-                                        {
-                                            xtype: 'textfield',
-                                            anchor: '100%',
-                                            name: 'nome',
-                                            fieldLabel: 'Nome',
-                                            labelAlign: 'right',
-                                            labelWidth: 50,
-                                            size: 60
-                                        },
-                                        {
-                                            xtype: 'combobox',
-                                            anchor: '100%',
-                                            name: 'strategy',
-                                            fieldLabel: 'Strategia',
-                                            labelAlign: 'right',
-                                            labelWidth: 50
-                                        }
-                                    ]
-                                }
-                            ],
-                            dockedItems: [
-                                {
-                                    xtype: 'toolbar',
-                                    dock: 'bottom',
-                                    height: 35,
-                                    maxHeight: 35,
-                                    minHeight: 35,
-                                    ui: 'footer',
-                                    layout: {
-                                        align: 'middle',
-                                        pack: 'center',
-                                        padding: '',
-                                        type: 'hbox'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'button',
-                                            iconCls: 'file_save',
-                                            text: 'Salva',
-                                            type: 'submit'
-                                        },
-                                        {
-                                            xtype: 'button',
-                                            iconCls: 'cancel',
-                                            text: 'Esci senza salvare',
-                                            type: 'reset',
-                                            listeners: {
-                                                click: {
-                                                    fn: me.onButtonClick,
-                                                    scope: me
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
+                            xtype: 'vendorForm',
+                            flex: 1
                         }
                     ]
                 },
@@ -129,42 +58,7 @@ Ext.define('ClothoExtXml.view.VendorArea', {
                     },
                     items: [
                         {
-                            xtype: 'gridpanel',
-                            id: 'vendorGridPanel',
-                            title: 'Fornitori',
-                            store: 'Vendors',
-                            viewConfig: {
-
-                            },
-                            columns: [
-                                {
-                                    xtype: 'numbercolumn',
-                                    width: 50,
-                                    dataIndex: 'codice',
-                                    text: 'Codice',
-                                    format: ''
-                                },
-                                {
-                                    xtype: 'gridcolumn',
-                                    width: 148,
-                                    dataIndex: 'nome',
-                                    text: 'Nome'
-                                }
-                            ],
-                            listeners: {
-                                afterlayout: {
-                                    fn: me.onVendorGridPanelAfterLayout,
-                                    scope: me
-                                },
-                                select: {
-                                    fn: me.onVendorGridPanelSelect,
-                                    scope: me
-                                },
-                                itemdblclick: {
-                                    fn: me.onVendorGridPanelItemDblClick,
-                                    scope: me
-                                }
-                            }
+                            xtype: 'vendorGridPanel'
                         }
                     ]
                 }
@@ -172,22 +66,6 @@ Ext.define('ClothoExtXml.view.VendorArea', {
         });
 
         me.callParent(arguments);
-    },
-
-    onButtonClick: function(button, e, options) {
-        Ext.getCmp('vendorFormContainer').hide()
-    },
-
-    onVendorGridPanelAfterLayout: function(abstractcontainer, layout, options) {
-        ClothoExtXml.controller.GlobalVariables.setCurrentGrid(abstractcontainer);
-    },
-
-    onVendorGridPanelSelect: function(selModel, record, index, options) {
-        Ext.getCmp('vendorData').update(record.getData());
-    },
-
-    onVendorGridPanelItemDblClick: function(tablepanel, record, item, index, e, options) {
-        Ext.getCmp('vendorFormContainer').show()
     }
 
 });

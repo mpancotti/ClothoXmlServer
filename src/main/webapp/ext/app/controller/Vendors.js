@@ -21,5 +21,71 @@ Ext.define('ClothoExtXml.controller.Vendors', {
     ],
     stores: [
         'Vendors'
-    ]
+    ],
+
+    init: function(application) {
+        this.control(
+        {'vendorGridPanel': {'itemdblclick':this.vendorDoubleClick,'itemclick':this.vendorClick},
+        '#venFormSaveBtn':{'click': this.vendorFormSave},
+        '#maintoolbar-add-btn':{'click': this.vendorClearToAdd},
+        '#maintoolbar-modify-btn':{'click': this.vendorClearToModify}
+    })
+    },
+
+    vendorDoubleClick: function(view, record) {
+        // Mostra il container
+        if(record){
+            var container = Ext.getCmp('vendorFormContainer');
+            if (!container.isVisible())
+            container.setVisible(true);
+            // Legge il Basic form
+            var form = Ext.getCmp('vendorForm');
+            form.queryById('codiceVendor').setEditable(false);
+            form.queryById('nomeVendor').focus(false,100);
+            // Carica i dati dallo store
+            form.getForm().loadRecord(record);
+            // Imposta le variabili globali
+            ClothoExtXml.controller.GlobalVariables.setCurrentStore(view.getStore());
+            ClothoExtXml.controller.GlobalVariables.setCurrentRecord(record);
+            ClothoExtXml.controller.GlobalVariables.setCurrentForm(form);
+            ClothoExtXml.controller.GlobalVariables.setCurrentContainer(container);
+            ClothoExtXml.controller.GlobalVariables.setCurrentStatus('Modify');
+            ClothoExtXml.controller.GlobalVariables.setCurrentModel('ClothoExtXml.model.Vendor');
+        }
+    },
+
+    vendorFormSave: function() {
+
+        ClothoExtXml.controller.GlobalVariables.formSave(
+        function(){ClothoExtXml.controller.GlobalVariables.deleteFromStore()},
+        function(){ClothoExtXml.controller.GlobalVariables.hideCurrentContainer()}
+        )    
+    },
+
+    vendorClick: function(view, record) {
+        var form = Ext.getCmp('vendorForm');
+        var container = Ext.getCmp('vendorFormContainer');
+        ClothoExtXml.controller.GlobalVariables.setCurrentStore(view.getStore());
+        ClothoExtXml.controller.GlobalVariables.setCurrentRecord(record);
+        ClothoExtXml.controller.GlobalVariables.setCurrentForm(form);
+        ClothoExtXml.controller.GlobalVariables.setCurrentContainer(container);
+        ClothoExtXml.controller.GlobalVariables.setCurrentStatus('Selected');
+        ClothoExtXml.controller.GlobalVariables.setCurrentModel('ClothoExtXml.model.Vendor');
+    },
+
+    vendorClearToAdd: function() {
+        if(ClothoExtXml.controller.GlobalVariables.getCurrentModel()=='ClothoExtXml.model.Vendor'){
+            var form=Ext.getCmp('vendorForm');
+            form.queryById('codiceVendor').setEditable(true);
+            form.queryById('codiceVendor').focus(true,100);
+        }
+    },
+
+    vendorClearToModify: function() {
+        this.vendorDoubleClick( 
+        Ext.getCmp('vendorGridPanel'),
+        ClothoExtXml.controller.GlobalVariables.getCurrentRecord()
+        )
+    }
+
 });

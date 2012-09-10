@@ -15,6 +15,7 @@
 
 Ext.define('ClothoExtXml.store.Vendors', {
     extend: 'Ext.data.Store',
+    alias: 'store.vendorList',
 
     requires: [
         'ClothoExtXml.model.Vendor'
@@ -24,34 +25,33 @@ Ext.define('ClothoExtXml.store.Vendors', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
+            autoLoad: true,
             storeId: 'vendors',
             model: 'ClothoExtXml.model.Vendor',
-            data: [
-                {
-                    id: 1,
-                    codice: 12345,
-                    nome: 'Safilo',
-                    strategy: 'CODE'
+            proxy: {
+                type: 'rest',
+                url: '/clothoxml/vendors',
+                reader: {
+                    type: 'json',
+                    root: 'data'
                 },
-                {
-                    id: 2,
-                    codice: 23456,
-                    nome: 'Luxottica',
-                    strategy: 'DESC'
-                },
-                {
-                    id: 3,
-                    codice: 34567,
-                    nome: 'Rodenstock',
-                    strategy: 'DESCCODE'
-                },
-                {
-                    id: 4,
-                    codice: 45678,
-                    nome: 'Hoya',
-                    strategy: 'CODEDESC'
+                listeners: {
+                    exception: {
+                        fn: me.onRestproxyException,
+                        scope: me
+                    }
                 }
-            ]
+            }
         }, cfg)]);
+    },
+
+    onRestproxyException: function(server, response, operation, options) {
+        Ext.Msg.alert('Errore nell\'accesso al database', 
+        operation.getError().status + ' - ' + operation.getError().statusText,
+        function(){
+            this.rejectChanges();
+            ClothoExtXml.controller.GlobalVariables.hideCurrentContainer()
+        },this);
     }
+
 });

@@ -18,12 +18,87 @@ Ext.define('ClothoExtXml.controller.GlobalVariables', {
 
     singleton: true,
 
+    addCurrentRecord: function() {
+        this.currentRecord=Ext.create(this.currentModel);
+        this.currentStore.insert(0,this.currentRecord);
+        if (!this.currentContainer.isVisible())
+        this.currentContainer.setVisible(true);
+        this.currentForm.getForm().loadRecord(this.currentRecord);
+        this.currentStatus='Add';
+        console.log(this.currentStatus);
+
+    },
+
+    deleteFromStore: function() {
+        if(this.currentStatus=='Add')
+        this.currentStore.remove(this.currentRecord);
+    },
+
+    formExit: function() {
+        this.currentContainer.hide();
+        if(this.currentStatus=='Add'){
+            this.deleteFromStore();
+        }
+    },
+
+    formSave: function(failureFunc,successFunc) {
+        this.currentForm.getForm().updateRecord();
+        this.currentStore.sync({
+            success:successFunc,
+        failure:failureFunc}
+        );
+    },
+
+    removeCurrentRecord: function(successFunc, failureFunc) {
+        this.currentStore.remove(this.currentRecord)
+        this.currentStore.sync({
+            success:successFunc,
+            failure:failureFunc
+        });
+    },
+
+    getCurrentContainer: function() {
+        return this.currentContainer
+    },
+
+    getCurrentForm: function() {
+        return this.currentForm
+    },
+
+    getCurrentGrid: function() {
+        return this.currentGrid
+    },
+
+    getCurrentModel: function() {
+        return this.currentModel
+    },
+
+    getCurrentRecord: function() {
+        return this.currentRecord
+    },
+
+    getCurrentStatus: function() {
+        return this.currentStatus
+    },
+
+    getCurrentStore: function() {
+        return this.currentStore;
+    },
+
+    setCurrentContainer: function(container) {
+        this.currentContainer=container
+    },
+
+    setCurrentForm: function(form) {
+        this.currentForm=form;
+    },
+
     setCurrentGrid: function(grid) {
         this.currentGrid=grid
     },
 
-    setCurrentForm: function(form) {
-        this.currentForm=form
+    setCurrentModel: function(model) {
+        this.currentModel=model;
     },
 
     setCurrentRecord: function(record) {
@@ -34,20 +109,15 @@ Ext.define('ClothoExtXml.controller.GlobalVariables', {
         this.currentStatus=status
     },
 
-    getCurrentGrid: function() {
-        return this.currentGrid
+    setCurrentStore: function(store) {
+        this.currentStore=store;
     },
 
-    getCurrentForm: function() {
-        return this.currentForm
-    },
-
-    getCurrentRecord: function() {
-        return this.currentRecord
-    },
-
-    getCurrentStatus: function() {
-        return this.currentStatus
+    hideCurrentContainer: function() {
+        if(this.currentContainer){
+            if(this.currentContainer.isVisible())
+            this.currentContainer.setVisible(false);
+        }
     }
 
 });

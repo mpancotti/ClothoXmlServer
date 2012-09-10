@@ -24,13 +24,15 @@ Ext.define('ClothoExtXml.controller.FocusController', {
     init: function(application) {
         this.control(
         {'textfield': {'focus':this.fieldGotFocus},
-        'gridpanel': {'containerclick':this.containerClicked}
+        'gridpanel': {'containerclick':this.containerClicked},
+        'grid':{'itemclick':this.gridclicked},
+        'grid':{'itemdblclick':this.gridclicked}
+
     }
     )
     },
 
     fieldGotFocus: function(field) {
-        console.log('Field has got focus: '+field.getName());
         this.resetBorders();
         var currentForm=field.up('form');
         currentForm.setBodyStyle('border-color','red');
@@ -47,11 +49,18 @@ Ext.define('ClothoExtXml.controller.FocusController', {
     },
 
     containerClicked: function(view) {
-        console.log('Container clicked');
         this.resetBorders();
         var currentForm=view.up('panel');
         currentForm.setBodyStyle('border-color','red');
         ClothoExtXml.controller.GlobalVariables.setCurrentGrid(currentForm);
+    },
+
+    gridclicked: function(view, record) {
+        ClothoExtXml.controller.GlobalVariables.setCurrentStore(view.getStore());
+        ClothoExtXml.controller.GlobalVariables.setCurrentRecord(record);
+        this.resetBorders();
+        var currentForm=view.up('panel');
+        currentForm.setBodyStyle('border-color','red');
     }
 
 });

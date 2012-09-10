@@ -19,6 +19,11 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Repository for Rule Entity
+ * @author marco
+ *
+ */
 @Repository
 public class RuleRepository implements RuleRepInterface{
 	
@@ -37,6 +42,9 @@ public class RuleRepository implements RuleRepInterface{
 		return rule;
 	}
 	
+	/**
+	 * find all rules for a specified vendor
+	 */
 	@Override
 	public List<Rule> findRulesOfVendor(Vendor vendor) {
 		return this.jdbcTemplate.query("select * from rule where codice_vendor_fk = ?", 
@@ -45,14 +53,14 @@ public class RuleRepository implements RuleRepInterface{
 	}
 	
 	/**
-	 * Get all the vendors
+	 * Get all the rules
 	 */
 	public List<Rule> findAllRules() {
 		return this.jdbcTemplate.query("select * from rule", new RuleMapper());
 		}
 	
 	/**
-	 * Insert a Vendor
+	 * Insert a Rule
 	 */
 	public void add(Rule rule){
 		Map<String,Object> parameters = new HashMap<String, Object>(14);
@@ -73,16 +81,23 @@ public class RuleRepository implements RuleRepInterface{
 		
 	}
 	
+	/**
+	 * Update a Rule
+	 */
 	@Override
 	public void update(Rule rule, Integer id) {
 		this.jdbcTemplate.update("update rule set regexp=?, strategy=?,"+
-	"valore_note_3=?, scadenza=?, created_on=?, "+
-	"created_by=?, updated_on=?, up  dated_by=?, version=?, codice_vendor_fk=?, sequenza=? where id=?",
+				"valore_note_3=?, scadenza=?, created_on=?, "+
+				"created_by=?, updated_on=?, up  dated_by=?, version=?, codice_vendor_fk=?, sequenza=? "+
+				"where id=?",
 				rule.getRegexp(),rule.getStrategy(),rule.getValore_note_3(),
 				rule.getScadenza(),rule.getCreated_on(),rule.getCreated_by(),rule.getUpdated_on(),
 				rule.getUpdated_by(),rule.getVersion(),rule.getCodice_vendor_fk(), rule.getSequenza(), id);
 	}
 	
+	/**
+	 * Delete a Rule
+	 */
 	@Override
 	public void delete(Integer id) {
 		this.jdbcTemplate.update("delete from rule where id=?",id);
@@ -113,7 +128,7 @@ public class RuleRepository implements RuleRepInterface{
 			return rule; }
 		}
 	
-	/*
+	/**
 	 * Set the datasource for the Repository
 	 */
     @Autowired
@@ -122,9 +137,4 @@ public class RuleRepository implements RuleRepInterface{
         this.jdbcInsertRule = new SimpleJdbcInsert(dataSource).withTableName("rule").usingGeneratedKeyColumns("id");
         this.jdbcInsertRule.compile();
     }
-
-
-
-
-
 }

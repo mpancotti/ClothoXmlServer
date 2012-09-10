@@ -1,0 +1,5 @@
+{ success:true, 
+vendors:[ 
+{ id: 1, codice: 12345, nome: 'Safilo', strategy: 'CODE' }, { id: 2, codice: 23456, nome: 'Luxottica', strategy: 'DESC' }, { id: 3, codice: 34567, nome: 'Rodenstock',
+strategy: 'DESCCODE' }, { id: 4, codice: 45678, nome: 'Hoya', strategy: 'CODEDESC' } 
+] }
