@@ -33,19 +33,30 @@ Ext.define('ClothoExtXml.view.RuleGidPanel', {
 
         Ext.applyIf(me, {
             viewConfig: {
-
+                id: 'ruleGridView',
+                itemId: 'ruleGridView'
             },
             columns: [
                 {
                     xtype: 'gridcolumn',
                     width: 154,
-                    dataIndex: 'id',
+                    dataIndex: 'regexp',
                     text: 'Regola'
                 }
-            ]
+            ],
+            listeners: {
+                select: {
+                    fn: me.onRuleGridPanelSelect,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
+    },
+
+    onRuleGridPanelSelect: function(selModel, record, index, options) {
+        Ext.getCmp('ruleData').update(record.getData());
     }
 
 });

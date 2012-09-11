@@ -43,6 +43,18 @@ Ext.define('ClothoExtXml.view.ClothoXmlViewport', {
                     },
                     items: [
                         {
+                            xtype: 'panel',
+                            id: 'vendorData',
+                            maxHeight: 30,
+                            minHeight: 30,
+                            tpl: [
+                                '<div style="padding:5px"> ',
+                                '    <span>Codice:<b>{codice}</b></span>&nbsp;&nbsp;<span>Nome:<b>{nome}</b></span>',
+                                '    &nbsp;&nbsp;<span>Strategia:<b>{strategy}</b></span>',
+                                '</div>'
+                            ]
+                        },
+                        {
                             xtype: 'tabpanel',
                             id: 'mainTabset',
                             width: 694,

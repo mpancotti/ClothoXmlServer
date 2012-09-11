@@ -25,7 +25,6 @@ Ext.define('ClothoExtXml.controller.GlobalVariables', {
         this.currentContainer.setVisible(true);
         this.currentForm.getForm().loadRecord(this.currentRecord);
         this.currentStatus='Add';
-        console.log(this.currentStatus);
 
     },
 
@@ -47,6 +46,13 @@ Ext.define('ClothoExtXml.controller.GlobalVariables', {
             success:successFunc,
         failure:failureFunc}
         );
+    },
+
+    hideCurrentContainer: function() {
+        if(this.currentContainer){
+            if(this.currentContainer.isVisible())
+            this.currentContainer.setVisible(false);
+        }
     },
 
     removeCurrentRecord: function(successFunc, failureFunc) {
@@ -85,6 +91,10 @@ Ext.define('ClothoExtXml.controller.GlobalVariables', {
         return this.currentStore;
     },
 
+    getCurrentVendorCode: function() {
+        return 18308
+    },
+
     setCurrentContainer: function(container) {
         this.currentContainer=container
     },
@@ -111,13 +121,6 @@ Ext.define('ClothoExtXml.controller.GlobalVariables', {
 
     setCurrentStore: function(store) {
         this.currentStore=store;
-    },
-
-    hideCurrentContainer: function() {
-        if(this.currentContainer){
-            if(this.currentContainer.isVisible())
-            this.currentContainer.setVisible(false);
-        }
     }
 
 });

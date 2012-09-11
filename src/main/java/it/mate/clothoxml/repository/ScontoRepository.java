@@ -139,6 +139,12 @@ public class ScontoRepository implements ScontoRepInterface{
         this.jdbcInsertSconto.compile();
     }
 
+	public List<Sconto> findScontiOfRule(Integer rule) {
+		return this.jdbcTemplate.query("select * from sconto where id_rule_fk = ?", 
+				new Object[]{rule},
+				new ScontoMapper());
+	}
+
 
 
 }

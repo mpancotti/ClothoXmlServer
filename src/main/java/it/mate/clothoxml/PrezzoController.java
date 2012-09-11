@@ -3,6 +3,7 @@ package it.mate.clothoxml;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import it.mate.clothoxml.domain.Prezzo;
+import it.mate.clothoxml.domain.Sconto;
 import it.mate.clothoxml.repository.PrezzoRepInterface;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -59,6 +61,33 @@ public class PrezzoController {
 		return new ResponseEntity<String>(new JSONSerializer().exclude(
 				"*.class").serialize(response), returnStatus);
 	}
+	
+	// Lettura di tutti i prezzi di un certo Rule
+	@RequestMapping( method = RequestMethod.GET, headers = "Accept=application/json", params="rule")
+	public ResponseEntity<String> listJsonOfRule(@RequestParam("rule") Integer rule) {
+		HttpStatus returnStatus = HttpStatus.OK;
+		JsonObjectResponse response = new JsonObjectResponse();
+
+		try {
+			List<Prezzo> records = prezzoRepository.findPrezziOfRule(rule);
+			returnStatus = HttpStatus.OK;
+			response.setMessage("All Prezzi retrieved.");
+			response.setSuccess(true);
+			response.setTotal(records.size());
+			response.setData(records);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setMessage(e.getMessage());
+			response.setSuccess(false);
+			response.setTotal(0L);
+		}
+
+		// Return list of retrieved performance areas
+		return new ResponseEntity<String>(new JSONSerializer().exclude(
+				"*.class").serialize(response), returnStatus);
+
+	}
+	
 
 	// Lettura di tutti i Prezzo
 	@RequestMapping(headers = "Accept=application/json")
@@ -87,7 +116,7 @@ public class PrezzoController {
 	}
 
 	// Creazione nuovo Prezzo
-	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/{id}",method = RequestMethod.POST, headers = "Accept=application/json")
 	public ResponseEntity<String> createFromJson(@RequestBody String json) {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
 

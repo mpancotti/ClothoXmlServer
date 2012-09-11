@@ -46,6 +46,12 @@ public class PrezzofissoRepository implements PrezzofissoRepInterface{
 		return this.jdbcTemplate.query("select * from prezzofisso", new PrezzofissoMapper());
 		}
 	
+	public List<Prezzofisso> findPrezzifissiOfRule(Integer rule) {
+		return this.jdbcTemplate.query("select * from prezzofisso where id_rule_fk = ?",
+				new Object[]{rule},
+				new PrezzofissoMapper());
+		}
+	
 	/**
 	 * Insert a Vendor
 	 */

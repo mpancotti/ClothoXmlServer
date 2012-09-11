@@ -52,7 +52,10 @@ Ext.define('ClothoExtXml.view.VendorGridPanel', {
                     fn: me.onVendorGridPanelSelect,
                     scope: me
                 }
-            }
+            },
+            selModel: Ext.create('Ext.selection.RowModel', {
+
+            })
         });
 
         me.callParent(arguments);

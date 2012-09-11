@@ -46,9 +46,9 @@ public class RuleRepository implements RuleRepInterface{
 	 * find all rules for a specified vendor
 	 */
 	@Override
-	public List<Rule> findRulesOfVendor(Vendor vendor) {
+	public List<Rule> findRulesOfVendor(Integer vendor) {
 		return this.jdbcTemplate.query("select * from rule where codice_vendor_fk = ?", 
-				new Object[]{vendor.getCodice()},
+				new Object[]{vendor},
 				new RuleMapper());
 	}
 	
@@ -88,7 +88,7 @@ public class RuleRepository implements RuleRepInterface{
 	public void update(Rule rule, Integer id) {
 		this.jdbcTemplate.update("update rule set regexp=?, strategy=?,"+
 				"valore_note_3=?, scadenza=?, created_on=?, "+
-				"created_by=?, updated_on=?, up  dated_by=?, version=?, codice_vendor_fk=?, sequenza=? "+
+				"created_by=?, updated_on=?, updated_by=?, version=?, codice_vendor_fk=?, sequenza=? "+
 				"where id=?",
 				rule.getRegexp(),rule.getStrategy(),rule.getValore_note_3(),
 				rule.getScadenza(),rule.getCreated_on(),rule.getCreated_by(),rule.getUpdated_on(),

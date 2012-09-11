@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import it.mate.clothoxml.domain.Prezzo;
+import it.mate.clothoxml.domain.Sconto;
 import it.mate.clothoxml.domain.Strategy;
 import it.mate.clothoxml.domain.Vendor;
 import it.mate.clothoxml.domain.Discount;
@@ -121,6 +122,13 @@ public class PrezzoRepository implements PrezzoRepInterface{
         this.jdbcInsertPrezzo = new SimpleJdbcInsert(dataSource).withTableName("prezzo").usingGeneratedKeyColumns("id");
         this.jdbcInsertPrezzo.compile();
     }
+
+	@Override
+	public List<Prezzo> findPrezziOfRule(Integer rule) {
+		return this.jdbcTemplate.query("select * from prezzo where id_rule_fk = ?", 
+				new Object[]{rule},
+				new PrezzoMapper());
+	}
 
 
 

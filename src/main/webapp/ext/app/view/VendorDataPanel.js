@@ -31,19 +31,6 @@ Ext.define('ClothoExtXml.view.VendorDataPanel', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'panel',
-                    flex: 1,
-                    id: 'vendorData',
-                    maxHeight: 30,
-                    minHeight: 30,
-                    tpl: [
-                        '<div style="padding:5px"> ',
-                        '    <span>Codice:<b>{codice}</b></span>&nbsp;&nbsp;<span>Nome:<b>{nome}</b></span>',
-                        '    &nbsp;&nbsp;<span>Strategia:<b>{strategy}</b></span>',
-                        '</div>'
-                    ]
-                },
-                {
                     xtype: 'gridpanel',
                     flex: 1,
                     height: 205,

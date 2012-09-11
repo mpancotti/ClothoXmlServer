@@ -24,31 +24,34 @@ Ext.define('ClothoExtXml.store.Rules', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
+            autoLoad: false,
+            remoteFilter: true,
             storeId: 'rules',
             model: 'ClothoExtXml.model.Rule',
-            data: [
-                {
-                    id: 'x',
-                    regexp: 'xxx',
-                    valore_note_3: '335',
-                    scadenza: '2012/12/12',
-                    strategy: 'code'
+            proxy: {
+                type: 'rest',
+                url: '/clothoxml/rules',
+                reader: {
+                    type: 'json',
+                    root: 'data'
                 },
-                {
-                    id: 'y',
-                    regexp: 'yyy',
-                    valore_note_3: '336',
-                    scadenza: '2012/12/12',
-                    strategy: 'desc'
-                },
-                {
-                    id: 'z',
-                    regexp: 'zzz',
-                    valore_note_3: '337',
-                    scadenza: '2012/12/12',
-                    strategy: 'desccode'
+                listeners: {
+                    exception: {
+                        fn: me.onRestproxyException,
+                        scope: me
+                    }
                 }
-            ]
+            }
         }, cfg)]);
+    },
+
+    onRestproxyException: function(server, response, operation, options) {
+        Ext.Msg.alert('Errore nell\'accesso al database', 
+        operation.getError().status + ' - ' + operation.getError().statusText,
+        function(){
+            this.rejectChanges();
+            ClothoExtXml.controller.GlobalVariables.hideCurrentContainer()
+        },this);
     }
+
 });

@@ -11,5 +11,5 @@ public interface RuleRepInterface {
 	public void add(Rule rule);
 	public void update(Rule rule, Integer codice);
 	public void delete(Integer codice);
-	public List<Rule> findRulesOfVendor(Vendor vendor);
+	public List<Rule> findRulesOfVendor(Integer vendor);
 }

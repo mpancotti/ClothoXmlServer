@@ -87,7 +87,7 @@ public class DiscountController {
 	}
 
 	// Creazione nuovo Discount
-	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/{id}",method = RequestMethod.POST, headers = "Accept=application/json")
 	public ResponseEntity<String> createFromJson(@RequestBody String json) {
 		HttpStatus returnStatus = HttpStatus.BAD_REQUEST;
 

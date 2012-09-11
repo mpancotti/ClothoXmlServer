@@ -92,15 +92,10 @@ Ext.define('ClothoExtXml.view.VendorForm', {
                         },
                         {
                             xtype: 'button',
+                            id: 'venFormExit',
                             iconCls: 'cancel',
                             text: 'Esci senza salvare',
-                            type: 'reset',
-                            listeners: {
-                                click: {
-                                    fn: me.onButtonClick,
-                                    scope: me
-                                }
-                            }
+                            type: 'reset'
                         }
                     ]
                 }
@@ -108,10 +103,6 @@ Ext.define('ClothoExtXml.view.VendorForm', {
         });
 
         me.callParent(arguments);
-    },
-
-    onButtonClick: function(button, e, options) {
-        ClothoExtXml.controller.GlobalVariables.formExit();
     }
 
 });

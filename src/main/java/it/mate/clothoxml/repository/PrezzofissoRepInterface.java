@@ -11,4 +11,5 @@ public interface PrezzofissoRepInterface {
 	public void add(Prezzofisso prezzofisso);
 	public void update(Prezzofisso prezzofisso, Integer codice);
 	public void delete(Integer codice);
+	public List<Prezzofisso> findPrezzifissiOfRule(Integer rule);
 }
