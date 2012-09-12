@@ -19,7 +19,10 @@ Ext.define('ClothoExtXml.view.RulesAreaPanel', {
 
     requires: [
         'ClothoExtXml.view.RuleGidPanel',
-        'ClothoExtXml.view.RuleForm'
+        'ClothoExtXml.view.RuleForm',
+        'ClothoExtXml.view.ScontiGridPanel',
+        'ClothoExtXml.view.PrezziGridPanel',
+        'ClothoExtXml.view.PrezziFissiGridPanel'
     ],
 
     layout: {
@@ -100,150 +103,13 @@ Ext.define('ClothoExtXml.view.RulesAreaPanel', {
                                     activeTab: 0,
                                     items: [
                                         {
-                                            xtype: 'gridpanel',
-                                            padding: 2,
-                                            title: 'Sconti',
-                                            store: 'Sconti',
-                                            viewConfig: {
-
-                                            },
-                                            columns: [
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'sconto_fornitore',
-                                                    text: 'Sconto_fornitore'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'tolleranza',
-                                                    text: 'Tolleranza'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_lordo',
-                                                    text: 'Prezzo_lordo'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'affiliato',
-                                                    text: 'Affiliato'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'affiliato_light',
-                                                    text: 'Affiliato_light'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'somministrato',
-                                                    text: 'Somministrato'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_affiliato',
-                                                    text: 'Prezzo_affiliato'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_affiliato_light',
-                                                    text: 'Prezzo_affiliato_light'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_somministrato',
-                                                    text: 'Prezzo_somministrato'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'scadenza',
-                                                    text: 'Scadenza'
-                                                }
-                                            ]
+                                            xtype: 'scontiGridPanel'
                                         },
                                         {
-                                            xtype: 'gridpanel',
-                                            title: 'Prezzi',
-                                            store: 'Prezzi',
-                                            viewConfig: {
-
-                                            },
-                                            columns: [
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_from',
-                                                    text: 'Prezzo_from'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_to',
-                                                    text: 'Prezzo_to'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'netto_lordo',
-                                                    text: 'Netto_lordo'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_affiliato',
-                                                    text: 'Prezzo_affiliato'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_affiliato_light',
-                                                    text: 'Prezzo_affiliato_light'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_somministrato',
-                                                    text: 'Prezzo_somministrato'
-                                                },
-                                                {
-                                                    xtype: 'datecolumn',
-                                                    dataIndex: 'scadenza',
-                                                    text: 'Scadenza'
-                                                }
-                                            ]
+                                            xtype: 'prezziGridPanel'
                                         },
                                         {
-                                            xtype: 'gridpanel',
-                                            title: 'Prezzo fisso',
-                                            store: 'PrezziFissi',
-                                            viewConfig: {
-
-                                            },
-                                            columns: [
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'prezzo_fornitore',
-                                                    text: 'Prezzo_fornitore'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'netto_lordo',
-                                                    text: 'Netto_lordo'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'affiliato',
-                                                    text: 'Affiliato'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'affiliato_light',
-                                                    text: 'Affiliato_light'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'somministrato',
-                                                    text: 'Somministrato'
-                                                },
-                                                {
-                                                    xtype: 'datecolumn',
-                                                    dataIndex: 'scadenza',
-                                                    text: 'Scadenza'
-                                                }
-                                            ]
+                                            xtype: 'prezziFissiGridPanel'
                                         }
                                     ]
                                 }

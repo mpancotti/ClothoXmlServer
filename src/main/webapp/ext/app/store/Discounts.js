@@ -24,65 +24,34 @@ Ext.define('ClothoExtXml.store.Discounts', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
+            autoLoad: false,
+            remoteFilter: true,
             storeId: 'discounts',
             model: 'ClothoExtXml.model.Discount',
-            data: [
-                {
-                    id: 1,
-                    codice: 12345,
-                    from_discount: 50,
-                    to_discount: 60,
-                    value_note_3: '40',
-                    affiliato: 50,
-                    affiliato_light: 60,
-                    somministrato: 55,
-                    scadenza: '2012-10-12'
+            proxy: {
+                type: 'rest',
+                url: '/clothoxml/discounts',
+                listeners: {
+                    exception: {
+                        fn: me.onRestproxyException,
+                        scope: me
+                    }
                 },
-                {
-                    id: 2,
-                    codice: 12346,
-                    from_discount: 55,
-                    to_discount: 65,
-                    value_note_3: '40',
-                    affiliato: 55,
-                    affiliato_light: 65,
-                    somministrato: 60,
-                    scadenza: '2012-10-12'
-                },
-                {
-                    id: 3,
-                    codice: 12347,
-                    from_discount: 60,
-                    to_discount: 70,
-                    value_note_3: '40',
-                    affiliato: 60,
-                    affiliato_light: 70,
-                    somministrato: 65,
-                    scadenza: '2012-10-12'
-                },
-                {
-                    id: 4,
-                    codice: 12348,
-                    from_discount: 65,
-                    to_discount: 75,
-                    value_note_3: '40',
-                    affiliato: 65,
-                    affiliato_light: 75,
-                    somministrato: 70,
-                    scadenza: '2012-10-12'
-                },
-                {
-                    id: 5,
-                    codice: 12349,
-                    from_discount: 70,
-                    to_discount: 80,
-                    value_note_3: '40',
-                    affiliato: 70,
-                    affiliato_light: 80,
-                    somministrato: 75,
-                    scadenza: '2012-10-12'
+                reader: {
+                    type: 'json',
+                    root: 'data'
                 }
-            ]
+            }
         }, cfg)]);
+    },
+
+    onRestproxyException: function(server, response, operation, options) {
+        Ext.Msg.alert('Errore nell\'accesso al database', 
+        operation.getError().status + ' - ' + operation.getError().statusText,
+        function(){
+            this.rejectChanges();
+            ClothoExtXml.controller.GlobalVariables.hideCurrentContainer()
+        },this);
     }
+
 });

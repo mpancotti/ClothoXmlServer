@@ -22,10 +22,6 @@ Ext.define('ClothoExtXml.model.Discount', {
             type: 'int'
         },
         {
-            name: 'codice',
-            type: 'int'
-        },
-        {
             name: 'from_discount',
             type: 'float'
         },

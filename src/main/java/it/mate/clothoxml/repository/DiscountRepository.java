@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import it.mate.clothoxml.domain.Discount;
+import it.mate.clothoxml.domain.Rule;
 import it.mate.clothoxml.domain.Strategy;
 import it.mate.clothoxml.domain.Vendor;
 
@@ -38,6 +39,8 @@ public class DiscountRepository implements DiscountRepInterface{
 		return discount;
 	}
 	
+
+	
 	/**
 	 * Get all the discounts
 	 */
@@ -48,9 +51,9 @@ public class DiscountRepository implements DiscountRepInterface{
 	/**
 	 * Get discounts connected with a specific vendor
 	 */
-	public List<Discount> findDiscountOfVendor(Vendor vendor){
+	public List<Discount> findDiscountOfVendor(Integer vendor){
 		return this.jdbcTemplate.query("select * from discount where codice_vendor_fk = ?",
-				new Object[] {vendor.getCodice()},
+				new Object[] {vendor},
 				new DiscountMapper());
 	}
 	

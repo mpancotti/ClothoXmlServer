@@ -24,71 +24,34 @@ Ext.define('ClothoExtXml.store.Prezzi', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
-            autoLoad: true,
+            autoLoad: false,
+            remoteFilter: true,
             storeId: 'prezzi',
             model: 'ClothoExtXml.model.Prezzo',
-            data: [
-                {
-                    id: 1,
-                    codice: 12345,
-                    prezzo_from: 50,
-                    prezzo_to: 70,
-                    netto_lordo: 60,
-                    prezzpPrezzoNL: 70,
-                    prezzo_affiliato: 60,
-                    prezzo_affiliato_light: 70,
-                    prezzo_somministrato: 80,
-                    scadenza: '2012-12-12'
+            proxy: {
+                type: 'rest',
+                url: '/clothoxml/prezzi',
+                reader: {
+                    type: 'json',
+                    root: 'data'
                 },
-                {
-                    id: 2,
-                    codice: 12355,
-                    prezzo_from: 60,
-                    prezzo_to: 80,
-                    netto_lordo: 70,
-                    prezzpPrezzoNL: 80,
-                    prezzo_affiliato: 70,
-                    prezzo_affiliato_light: 80,
-                    prezzo_somministrato: 900,
-                    scadenza: '2012/12/12'
-                },
-                {
-                    id: 3,
-                    codice: 12365,
-                    prezzo_from: 70,
-                    prezzo_to: 90,
-                    netto_lordo: 80,
-                    prezzpPrezzoNL: 90,
-                    prezzo_affiliato: 80,
-                    prezzo_affiliato_light: 90,
-                    prezzo_somministrato: 100,
-                    scadenza: '2012/12/12'
-                },
-                {
-                    id: 4,
-                    codice: 12375,
-                    prezzo_from: 80,
-                    prezzo_to: 100,
-                    netto_lordo: 90,
-                    prezzpPrezzoNL: 100,
-                    prezzo_affiliato: 90,
-                    prezzo_affiliato_light: 100,
-                    prezzo_somministrato: 110,
-                    scadenza: '2012/12/12'
-                },
-                {
-                    id: 5,
-                    codice: 12385,
-                    prezzo_from: 90,
-                    prezzo_to: 110,
-                    netto_lordo: 100,
-                    prezzpPrezzoNL: 110,
-                    prezzo_affiliato: 100,
-                    prezzo_affiliato_light: 110,
-                    prezzo_somministrato: 120,
-                    scadenza: '2012/12/12'
+                listeners: {
+                    exception: {
+                        fn: me.onRestproxyException,
+                        scope: me
+                    }
                 }
-            ]
+            }
         }, cfg)]);
+    },
+
+    onRestproxyException: function(server, response, operation, options) {
+        Ext.Msg.alert('Errore nell\'accesso al database', 
+        operation.getError().status + ' - ' + operation.getError().statusText,
+        function(){
+            this.rejectChanges();
+            ClothoExtXml.controller.GlobalVariables.hideCurrentContainer()
+        },this);
     }
+
 });

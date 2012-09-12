@@ -3,6 +3,7 @@ package it.mate.clothoxml;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import it.mate.clothoxml.domain.Discount;
+import it.mate.clothoxml.domain.Rule;
 import it.mate.clothoxml.repository.DiscountRepInterface;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -58,6 +60,31 @@ public class DiscountController {
 		}
 		return new ResponseEntity<String>(new JSONSerializer().exclude(
 				"*.class").serialize(response), returnStatus);
+	}
+	
+	@RequestMapping( method = RequestMethod.GET, headers = "Accept=application/json", params="vendor")
+	public ResponseEntity<String> listJsonOfVendor(@RequestParam("vendor") Integer vendor) {
+		HttpStatus returnStatus = HttpStatus.OK;
+		JsonObjectResponse response = new JsonObjectResponse();
+
+		try {
+			List<Discount> records = discountRepository.findDiscountOfVendor(vendor);
+			returnStatus = HttpStatus.OK;
+			response.setMessage("All Discounts retrieved.");
+			response.setSuccess(true);
+			response.setTotal(records.size());
+			response.setData(records);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setMessage(e.getMessage());
+			response.setSuccess(false);
+			response.setTotal(0L);
+		}
+
+		// Return list of retrieved performance areas
+		return new ResponseEntity<String>(new JSONSerializer().exclude(
+				"*.class").serialize(response), returnStatus);
+
 	}
 
 	// Lettura di tutti i Discount

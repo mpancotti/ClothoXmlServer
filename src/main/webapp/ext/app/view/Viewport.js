@@ -18,6 +18,6 @@ Ext.define('ClothoExtXml.view.Viewport', {
     renderTo: Ext.getBody(),
     requires: [
         'ClothoExtXml.view.ClothoXmlViewport',
-        'ClothoExtXml.view.BasicDataGrid'
+        'ClothoExtXml.view.RuleGidPanel'
     ]
 });

@@ -17,6 +17,10 @@ Ext.define('ClothoExtXml.view.VendorDataPanel', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.vendorDataPanel',
 
+    requires: [
+        'ClothoExtXml.view.DiscountGridPanel'
+    ],
+
     height: 613,
     width: 818,
     layout: {
@@ -31,35 +35,8 @@ Ext.define('ClothoExtXml.view.VendorDataPanel', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'gridpanel',
-                    flex: 1,
-                    height: 205,
-                    id: 'basicDataPanel',
-                    width: 748,
-                    title: 'Basic Data',
-                    store: 'Discounts',
-                    columns: [
-                        {
-                            xtype: 'gridcolumn',
-                            dataIndex: 'from_discount',
-                            text: 'Da'
-                        },
-                        {
-                            xtype: 'numbercolumn',
-                            dataIndex: 'to_discount',
-                            text: 'A'
-                        },
-                        {
-                            xtype: 'datecolumn',
-                            dataIndex: 'scadenza',
-                            text: 'Scadenza'
-                        },
-                        {
-                            xtype: 'booleancolumn',
-                            dataIndex: 'value_note_3',
-                            text: 'Valore in note3'
-                        }
-                    ]
+                    xtype: 'discountGridPanel',
+                    flex: 1
                 }
             ]
         });

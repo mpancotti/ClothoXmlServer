@@ -10,4 +10,5 @@ public interface ScontoRepInterface {
 	public void add(Sconto sconto);
 	public void update(Sconto sconto, Integer codice);
 	public void delete(Integer codice);
+	public List<Sconto> findScontiOfRule(Integer rule);
 }

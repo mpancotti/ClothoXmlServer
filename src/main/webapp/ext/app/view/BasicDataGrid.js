@@ -15,10 +15,11 @@
 
 Ext.define('ClothoExtXml.view.BasicDataGrid', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.basicDataGrid',
+    alias: 'widget.discntList',
 
     height: 205,
-    id: 'discountDataPanel',
+    id: 'discntList',
+    itemId: 'discntList',
     width: 748,
     title: 'Basic Data',
     store: 'Discounts',

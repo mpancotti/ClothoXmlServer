@@ -40,7 +40,6 @@ Ext.application({
         'Strategy'
     ],
     views: [
-        'BasicDataGrid',
         'VendorDataPanel',
         'RulesAreaPanel',
         'MainToolbar',
@@ -48,7 +47,11 @@ Ext.application({
         'VendorForm',
         'VendorGridPaneL',
         'RuleGidPanel',
-        'RuleForm'
+        'RuleForm',
+        'ScontiGridPanel',
+        'PrezziGridPanel',
+        'PrezziFissiGridPanel',
+        'DiscountGridPanel'
     ],
     autoCreateViewport: true,
     name: 'ClothoExtXml',

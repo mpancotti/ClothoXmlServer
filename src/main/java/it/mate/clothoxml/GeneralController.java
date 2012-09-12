@@ -47,7 +47,7 @@ public class GeneralController {
 				vendorData.setCodice(vendor.getCodice());
 				vendorData.setNome(vendor.getNome());
 				vendorData.setStrategy(vendor.getStrategy());
-				vendorData.setDiscounts(discountRepository.findDiscountOfVendor(vendor));				
+				vendorData.setDiscounts(discountRepository.findDiscountOfVendor(vendor.getCodice()));				
 				List<VendorRule> vendorRules = new ArrayList<VendorRule>();
 				for(Rule rule: ruleRepository.findRulesOfVendor(vendor.getCodice())){
 					VendorRule vr = new VendorRule();

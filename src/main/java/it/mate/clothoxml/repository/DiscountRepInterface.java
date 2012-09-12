@@ -11,5 +11,5 @@ public interface DiscountRepInterface {
 	public void add(Discount discount);
 	public void update(Discount discount, Integer codice);
 	public void delete(Integer codice);
-	public List<Discount> findDiscountOfVendor(Vendor vendor);
+	public List<Discount> findDiscountOfVendor(Integer vendor);
 }
