@@ -68,8 +68,9 @@ Ext.define('ClothoExtXml.controller.Rules', {
 
     init: function(application) {
         this.control(
-        {'ruleGridPanel': {'itemdblclick':this.rulesDoubleClick,'itemClick':this.rulesItemClick,'selectionchange':this.ruleSelectionChange},
+        {'ruleGridPanel': {'itemdblclick':this.rulesDoubleClick,'itemclick':this.rulesItemClick,'selectionchange':this.ruleSelectionChange},
         '#ruleFormSaveBtn':{'click': this.ruleFormSave},
+        '#ruleFormExit':{'click': this.ruleFormExit}, 
         '#maintoolbar-add-btn':{'click': this.ruleClearToAdd},
         '#maintoolbar-modify-btn':{'click': this.ruleClearToModify},
     })
@@ -112,7 +113,12 @@ Ext.define('ClothoExtXml.controller.Rules', {
 
     ruleClearToAdd: function() {
         if(ClothoExtXml.controller.GlobalVariables.getCurrentModel()=='ClothoExtXml.model.Rule'){
+            ClothoExtXml.controller.GlobalVariables.addCurrentRecord();
         }
+    },
+
+    ruleFormExit: function() {
+        ClothoExtXml.controller.GlobalVariables.formExit();
     }
 
 });

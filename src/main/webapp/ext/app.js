@@ -58,7 +58,10 @@ Ext.application({
     controllers: [
         'Rules',
         'Vendors',
-        'FocusController'
+        'FocusController',
+        'Sconti',
+        'Prezzi',
+        'Prezzifissi'
     ],
 
     launch: function() {

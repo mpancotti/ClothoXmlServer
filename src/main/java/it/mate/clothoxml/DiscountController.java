@@ -2,10 +2,12 @@ package it.mate.clothoxml;
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
+import flexjson.transformer.DateTransformer;
 import it.mate.clothoxml.domain.Discount;
 import it.mate.clothoxml.domain.Rule;
 import it.mate.clothoxml.repository.DiscountRepInterface;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -82,7 +84,7 @@ public class DiscountController {
 		}
 
 		// Return list of retrieved performance areas
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 
 	}

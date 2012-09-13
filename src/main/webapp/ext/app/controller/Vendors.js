@@ -36,7 +36,7 @@ Ext.define('ClothoExtXml.controller.Vendors', {
 
     init: function(application) {
         this.control(
-        {'vendorGridPanel': {'itemdblclick':this.vendorDoubleClick,'itemclick':this.vendorClick,'selectionchange':this.vendorSelectionChange},
+        {'vendorGridPanel': {'itemdblclick':this.vendorDoubleClick,'itemclick':this.vendorItemClick,'selectionchange':this.vendorSelectionChange},
         '#venFormSaveBtn':{'click': this.vendorFormSave},
         '#venFormExit':{'click':this.vendorFormExit},
         '#maintoolbar-add-btn':{'click': this.vendorClearToAdd},
@@ -76,7 +76,7 @@ Ext.define('ClothoExtXml.controller.Vendors', {
 
     },
 
-    vendorClick: function(view, record) {
+    vendorItemClick: function(view, record) {
         var form = Ext.getCmp('vendorForm');
         var container = Ext.getCmp('vendorFormContainer');
         ClothoExtXml.controller.GlobalVariables.setCurrentStore(view.getStore());
@@ -92,6 +92,7 @@ Ext.define('ClothoExtXml.controller.Vendors', {
             var form=Ext.getCmp('vendorForm');
             form.queryById('codiceVendor').setEditable(true);
             form.queryById('codiceVendor').focus(true,100);
+            ClothoExtXml.controller.GlobalVariables.addCurrentRecord();
         }
     },
 
@@ -115,6 +116,10 @@ Ext.define('ClothoExtXml.controller.Vendors', {
             this.getDisList().getStore().load({params:{vendor:records[0].get('codice')}});
         }
 
+    },
+
+    vendorFormExit: function() {
+        ClothoExtXml.controller.GlobalVariables.formExit();
     }
 
 });

@@ -46,9 +46,9 @@ Ext.define('ClothoExtXml.view.RulesAreaPanel', {
                     items: [
                         {
                             xtype: 'container',
-                            maxWidth: 160,
-                            minWidth: 160,
-                            width: 160,
+                            maxWidth: 250,
+                            minWidth: 250,
+                            width: 250,
                             layout: {
                                 align: 'stretch',
                                 type: 'hbox'

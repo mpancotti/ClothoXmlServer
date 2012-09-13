@@ -42,7 +42,8 @@ Ext.define('ClothoExtXml.view.DiscountGridPanel', {
                 {
                     xtype: 'datecolumn',
                     dataIndex: 'scadenza',
-                    text: 'Scadenza'
+                    text: 'Scadenza',
+                    format: 'd/m/Y'
                 },
                 {
                     xtype: 'booleancolumn',

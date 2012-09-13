@@ -19,7 +19,7 @@ Ext.define('ClothoExtXml.model.Rule', {
     fields: [
         {
             name: 'id',
-            type: 'string'
+            type: 'int'
         },
         {
             name: 'regexp',

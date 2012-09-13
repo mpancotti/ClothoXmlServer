@@ -18,10 +18,10 @@ Ext.define('ClothoExtXml.view.RuleGidPanel', {
     alias: 'widget.ruleGridPanel',
 
     id: 'ruleGridPanel',
-    maxWidth: 160,
-    minWidth: 160,
+    maxWidth: 250,
+    minWidth: 250,
     padding: 2,
-    width: 160,
+    width: 250,
     title: 'Lista Regole ',
     enableColumnHide: false,
     enableColumnMove: false,
@@ -42,6 +42,11 @@ Ext.define('ClothoExtXml.view.RuleGidPanel', {
                     width: 154,
                     dataIndex: 'regexp',
                     text: 'Regola'
+                },
+                {
+                    xtype: 'numbercolumn',
+                    dataIndex: 'id',
+                    text: 'Id'
                 }
             ],
             listeners: {

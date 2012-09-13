@@ -45,13 +45,7 @@ Ext.define('ClothoExtXml.view.MainToolbar', {
                     xtype: 'button',
                     id: 'maintoolbar-add-btn',
                     iconCls: 'file_add',
-                    text: 'Aggiungi',
-                    listeners: {
-                        click: {
-                            fn: me.addRecord,
-                            scope: me
-                        }
-                    }
+                    text: 'Aggiungi'
                 },
                 {
                     xtype: 'button',
@@ -81,10 +75,6 @@ Ext.define('ClothoExtXml.view.MainToolbar', {
         });
 
         me.callParent(arguments);
-    },
-
-    addRecord: function(button, e, options) {
-        ClothoExtXml.controller.GlobalVariables.addCurrentRecord();
     },
 
     removeRecord: function(button, e, options) {
