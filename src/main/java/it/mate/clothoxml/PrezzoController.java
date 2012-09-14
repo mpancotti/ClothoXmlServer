@@ -2,10 +2,12 @@ package it.mate.clothoxml;
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
+import flexjson.transformer.DateTransformer;
 import it.mate.clothoxml.domain.Prezzo;
 import it.mate.clothoxml.domain.Sconto;
 import it.mate.clothoxml.repository.PrezzoRepInterface;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -58,7 +60,7 @@ public class PrezzoController {
 			response.setSuccess(false);
 			response.setTotal(0L);
 		}
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 	
@@ -83,7 +85,7 @@ public class PrezzoController {
 		}
 
 		// Return list of retrieved performance areas
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 
 	}
@@ -110,7 +112,7 @@ public class PrezzoController {
 		}
 
 		// Return list of retrieved performance areas
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 
 	}
@@ -136,7 +138,7 @@ public class PrezzoController {
 			response.setTotal(0L);
 		}
 		// return the created record with the new system generated id
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 
@@ -159,7 +161,7 @@ public class PrezzoController {
 			response.setTotal(0L);
 		}
 		// return the updated record
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 
@@ -184,7 +186,7 @@ public class PrezzoController {
 		}
 
 		// Return just the deleted id
-		return new ResponseEntity<String>(new JSONSerializer()
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class)
 				.exclude("*.class").serialize(response), returnStatus);
 	}
 

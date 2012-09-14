@@ -30,26 +30,43 @@ Ext.define('ClothoExtXml.view.DiscountGridPanel', {
         Ext.applyIf(me, {
             columns: [
                 {
-                    xtype: 'gridcolumn',
+                    xtype: 'numbercolumn',
                     dataIndex: 'from_discount',
-                    text: 'Da'
+                    text: 'Da',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'to_discount',
-                    text: 'A'
+                    text: 'A',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'value_note_3',
+                    text: 'Valore in Note 3',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 },
                 {
                     xtype: 'datecolumn',
                     dataIndex: 'scadenza',
                     text: 'Scadenza',
-                    format: 'd/m/Y'
-                },
-                {
-                    xtype: 'booleancolumn',
-                    dataIndex: 'value_note_3',
-                    text: 'Valore in note3'
+                    format: 'd/m/Y',
+                    editor: {
+                        xtype: 'datefield'
+                    }
                 }
+            ],
+            plugins: [
+                Ext.create('Ext.grid.plugin.RowEditing', {
+                    ptype: 'rowediting'
+                })
             ]
         });
 

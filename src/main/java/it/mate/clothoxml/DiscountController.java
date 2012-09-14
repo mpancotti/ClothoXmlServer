@@ -60,7 +60,7 @@ public class DiscountController {
 			response.setSuccess(false);
 			response.setTotal(0L);
 		}
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 	
@@ -110,7 +110,7 @@ public class DiscountController {
 		}
 
 		// Return list of retrieved performance areas
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 
 	}
@@ -136,7 +136,7 @@ public class DiscountController {
 			response.setTotal(0L);
 		}
 		// return the created record with the new system generated id
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 
@@ -159,7 +159,7 @@ public class DiscountController {
 			response.setTotal(0L);
 		}
 		// return the updated record
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 
@@ -184,7 +184,7 @@ public class DiscountController {
 		}
 
 		// Return just the deleted id
-		return new ResponseEntity<String>(new JSONSerializer()
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class)
 				.exclude("*.class").serialize(response), returnStatus);
 	}
 

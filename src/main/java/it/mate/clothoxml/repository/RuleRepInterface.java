@@ -8,7 +8,7 @@ import it.mate.clothoxml.domain.Vendor;
 public interface RuleRepInterface {
 	public Rule getRule(Integer codice);
 	public List<Rule> findAllRules();
-	public void add(Rule rule);
+	public Integer add(Rule rule);
 	public void update(Rule rule, Integer codice);
 	public void delete(Integer codice);
 	public List<Rule> findRulesOfVendor(Integer vendor);

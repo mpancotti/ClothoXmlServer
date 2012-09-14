@@ -62,7 +62,7 @@ public class RuleRepository implements RuleRepInterface{
 	/**
 	 * Insert a Rule
 	 */
-	public void add(Rule rule){
+	public Integer add(Rule rule){
 		Map<String,Object> parameters = new HashMap<String, Object>(14);
 		//parameters.put("id", rule.getId());
 
@@ -77,8 +77,7 @@ public class RuleRepository implements RuleRepInterface{
 		parameters.put("version", rule.getVersion());
 		parameters.put("codice_vendor_fk", rule.getCodice_vendor_fk());
 		parameters.put("sequenza", rule.getSequenza());
-		jdbcInsertRule.execute(parameters);
-		
+		return (Integer) jdbcInsertRule.executeAndReturnKey(parameters);
 	}
 	
 	/**

@@ -65,7 +65,10 @@ Ext.application({
     ],
 
     launch: function() {
-        Ext.getCmp('vendorGridPanel').getSelectionModel().select(0)
+        Ext.getCmp('vendorGridPanel').getSelectionModel().select(0);
+        Ext.JSON.encodeDate=function(d){
+            return Ext.Date.format(d,'"m/d/Y"');
+        }
     }
 
 });

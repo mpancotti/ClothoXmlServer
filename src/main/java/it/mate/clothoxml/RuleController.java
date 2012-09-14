@@ -2,9 +2,11 @@ package it.mate.clothoxml;
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
+import flexjson.transformer.DateTransformer;
 import it.mate.clothoxml.domain.Rule;
 import it.mate.clothoxml.repository.RuleRepInterface;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -57,7 +59,7 @@ public class RuleController {
 			response.setSuccess(false);
 			response.setTotal(0L);
 		}
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 	
@@ -82,7 +84,7 @@ public class RuleController {
 		}
 
 		// Return list of retrieved performance areas
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 
 	}
@@ -108,7 +110,7 @@ public class RuleController {
 		}
 
 		// Return list of retrieved performance areas
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 
 	}
@@ -122,19 +124,19 @@ public class RuleController {
 		try {
 			 //String test="{codice:198989, nome:'nome198989', strategy:'DESC'}";
 			Rule rule = Rule.fromJsonToRule(json);
-			ruleRepository.add(rule);
+			rule.setId(ruleRepository.add(rule));
 			returnStatus = HttpStatus.OK;
 			response.setMessage("Rule created.");
 			response.setSuccess(true);
 			response.setTotal(1L);
-			// response.setData(record);
+			response.setData(rule);
 		} catch (Exception e) {
 			response.setMessage(e.getMessage());
 			response.setSuccess(false);
 			response.setTotal(0L);
 		}
 		// return the created record with the new system generated id
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 
@@ -157,7 +159,7 @@ public class RuleController {
 			response.setTotal(0L);
 		}
 		// return the updated record
-		return new ResponseEntity<String>(new JSONSerializer().exclude(
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class).exclude(
 				"*.class").serialize(response), returnStatus);
 	}
 
@@ -182,7 +184,7 @@ public class RuleController {
 		}
 
 		// Return just the deleted id
-		return new ResponseEntity<String>(new JSONSerializer()
+		return new ResponseEntity<String>(new JSONSerializer().transform(new DateTransformer("yyyy-MM-dd"),Date.class)
 				.exclude("*.class").serialize(response), returnStatus);
 	}
 

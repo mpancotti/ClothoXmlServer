@@ -55,7 +55,8 @@ Ext.define('ClothoExtXml.view.RuleForm', {
                             anchor: '100%',
                             name: 'scadenza',
                             fieldLabel: 'Scadenza',
-                            labelAlign: 'right'
+                            labelAlign: 'right',
+                            format: 'd/m/Y'
                         },
                         {
                             xtype: 'combobox',
