@@ -50,7 +50,7 @@ public class PrezzoRepository implements PrezzoRepInterface{
 	/**
 	 * Insert a Vendor
 	 */
-	public void add(Prezzo prezzo){
+	public Integer add(Prezzo prezzo){
 		Map<String,Object> parameters = new HashMap<String, Object>(14);
 		//parameters.put("id", prezzo.getId());
 		parameters.put("prezzo_from", prezzo.getPrezzo_from());
@@ -66,7 +66,7 @@ public class PrezzoRepository implements PrezzoRepInterface{
 		parameters.put("udated_by", prezzo.getUpdated_by());
 		parameters.put("version", prezzo.getVersion());
 		parameters.put("id_rule_fk", prezzo.getId_rule_fk());
-		jdbcInsertPrezzo.execute(parameters);
+		return (Integer) jdbcInsertPrezzo.executeAndReturnKey(parameters);
 		
 	}
 	

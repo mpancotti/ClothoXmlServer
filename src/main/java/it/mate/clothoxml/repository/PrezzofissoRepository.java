@@ -55,7 +55,7 @@ public class PrezzofissoRepository implements PrezzofissoRepInterface{
 	/**
 	 * Insert a Vendor
 	 */
-	public void add(Prezzofisso prezzofisso){
+	public Integer add(Prezzofisso prezzofisso){
 		Map<String,Object> parameters = new HashMap<String, Object>(14);
 		//parameters.put("id", prezzofisso.getId());
 		parameters.put("prezzo_fornitore", prezzofisso.getPrezzo_fornitore());
@@ -70,7 +70,7 @@ public class PrezzofissoRepository implements PrezzofissoRepInterface{
 		parameters.put("udated_by", prezzofisso.getUpdated_by());
 		parameters.put("version", prezzofisso.getVersion());
 		parameters.put("id_rule_fk", prezzofisso.getId_rule_fk());
-		jdbcInsertPrezzofisso.execute(parameters);
+		return (Integer) jdbcInsertPrezzofisso.executeAndReturnKey(parameters);
 		
 	}
 	

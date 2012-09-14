@@ -8,7 +8,7 @@ import it.mate.clothoxml.domain.Sconto;
 public interface PrezzoRepInterface {
 	public Prezzo getPrezzo(Integer codice);
 	public List<Prezzo> findAllPrezzi();
-	public void add(Prezzo prezzo);
+	public Integer add(Prezzo prezzo);
 	public void update(Prezzo prezzo, Integer codice);
 	public void delete(Integer codice);
 	public List<Prezzo> findPrezziOfRule(Integer rule);

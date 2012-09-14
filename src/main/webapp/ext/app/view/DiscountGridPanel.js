@@ -65,7 +65,8 @@ Ext.define('ClothoExtXml.view.DiscountGridPanel', {
             ],
             plugins: [
                 Ext.create('Ext.grid.plugin.RowEditing', {
-                    ptype: 'rowediting'
+                    ptype: 'rowediting',
+                    pluginId: 'discountEditingPlugin'
                 })
             ]
         });

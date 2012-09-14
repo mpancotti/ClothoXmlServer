@@ -124,12 +124,12 @@ public class DiscountController {
 		try {
 			 //String test="{codice:198989, nome:'nome198989', strategy:'DESC'}";
 			Discount discount = Discount.fromJsonToDiscount(json);
-			discountRepository.add(discount);
+			discount.setId(discountRepository.add(discount));
 			returnStatus = HttpStatus.OK;
 			response.setMessage("Discount created.");
 			response.setSuccess(true);
 			response.setTotal(1L);
-			// response.setData(record);
+			response.setData(discount);
 		} catch (Exception e) {
 			response.setMessage(e.getMessage());
 			response.setSuccess(false);

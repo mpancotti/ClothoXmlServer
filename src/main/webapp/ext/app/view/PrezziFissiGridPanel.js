@@ -32,32 +32,50 @@ Ext.define('ClothoExtXml.view.PrezziFissiGridPanel', {
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_fornitore',
-                    text: 'Prezzo_fornitore'
+                    text: 'Prezzo_fornitore',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'netto_lordo',
-                    text: 'Netto_lordo'
+                    text: 'Netto_lordo',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'affiliato',
-                    text: 'Affiliato'
+                    text: 'Affiliato',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'affiliato_light',
-                    text: 'Affiliato_light'
+                    text: 'Affiliato_light',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'somministrato',
-                    text: 'Somministrato'
+                    text: 'Somministrato',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'datecolumn',
                     dataIndex: 'scadenza',
-                    text: 'Scadenza'
+                    text: 'Scadenza',
+                    editor: {
+                        xtype: 'datefield'
+                    }
                 }
             ]
         });

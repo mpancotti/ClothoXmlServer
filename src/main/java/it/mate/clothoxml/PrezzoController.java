@@ -126,12 +126,12 @@ public class PrezzoController {
 		try {
 			 //String test="{codice:198989, nome:'nome198989', strategy:'DESC'}";
 			Prezzo prezzo = Prezzo.fromJsonToPrezzo(json);
-			prezzoRepository.add(prezzo);
+			prezzo.setId(prezzoRepository.add(prezzo));
 			returnStatus = HttpStatus.OK;
 			response.setMessage("Prezzo created.");
 			response.setSuccess(true);
 			response.setTotal(1L);
-			// response.setData(record);
+			response.setData(prezzo);
 		} catch (Exception e) {
 			response.setMessage(e.getMessage());
 			response.setSuccess(false);

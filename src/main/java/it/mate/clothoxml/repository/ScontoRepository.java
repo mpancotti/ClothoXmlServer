@@ -52,7 +52,7 @@ public class ScontoRepository implements ScontoRepInterface{
 	/**
 	 * Insert a Sconto
 	 */
-	public void add(Sconto sconto){
+	public Integer add(Sconto sconto){
 		Map<String,Object> parameters = new HashMap<String, Object>(14);
 		//parameters.put("id", sconto.getId());
 		parameters.put("sconto_fornitore", sconto.getSconto_fornitore());
@@ -71,7 +71,7 @@ public class ScontoRepository implements ScontoRepInterface{
 		parameters.put("udated_by", sconto.getUpdated_by());
 		parameters.put("version", sconto.getVersion());
 		parameters.put("id_rule_fk", sconto.getId_rule_fk());
-		jdbcInsertSconto.execute(parameters);
+		return (Integer) jdbcInsertSconto.executeAndReturnKey(parameters);
 		
 	}
 	

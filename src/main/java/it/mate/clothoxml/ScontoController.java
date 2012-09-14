@@ -125,12 +125,12 @@ public class ScontoController {
 		try {
 			 //String test="{codice:198989, nome:'nome198989', strategy:'DESC'}";
 			Sconto sconto = Sconto.fromJsonToSconto(json);
-			scontoRepository.add(sconto);
+			sconto.setId(scontoRepository.add(sconto));
 			returnStatus = HttpStatus.OK;
 			response.setMessage("Sconto created.");
 			response.setSuccess(true);
 			response.setTotal(1L);
-			// response.setData(record);
+			response.setData(sconto);
 		} catch (Exception e) {
 			response.setMessage(e.getMessage());
 			response.setSuccess(false);

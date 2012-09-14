@@ -8,7 +8,7 @@ import it.mate.clothoxml.domain.Prezzofisso;
 public interface PrezzofissoRepInterface {
 	public Prezzofisso getPrezzofisso(Integer codice);
 	public List<Prezzofisso> findAllPrezzofisso();
-	public void add(Prezzofisso prezzofisso);
+	public Integer add(Prezzofisso prezzofisso);
 	public void update(Prezzofisso prezzofisso, Integer codice);
 	public void delete(Integer codice);
 	public List<Prezzofisso> findPrezzifissiOfRule(Integer rule);

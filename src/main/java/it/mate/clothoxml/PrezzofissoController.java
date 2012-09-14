@@ -123,12 +123,12 @@ public class PrezzofissoController {
 		try {
 			 //String test="{codice:198989, nome:'nome198989', strategy:'DESC'}";
 			Prezzofisso prezzofisso = Prezzofisso.fromJsonToPrezzofisso(json);
-			prezzofissoRepository.add(prezzofisso);
+			prezzofisso.setId(prezzofissoRepository.add(prezzofisso));
 			returnStatus = HttpStatus.OK;
 			response.setMessage("Prezzofisso created.");
 			response.setSuccess(true);
 			response.setTotal(1L);
-			// response.setData(record);
+			response.setData(prezzofisso);
 		} catch (Exception e) {
 			response.setMessage(e.getMessage());
 			response.setSuccess(false);

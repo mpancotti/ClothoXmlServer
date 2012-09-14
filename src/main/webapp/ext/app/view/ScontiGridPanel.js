@@ -33,52 +33,82 @@ Ext.define('ClothoExtXml.view.ScontiGridPanel', {
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'sconto_fornitore',
-                    text: 'Sconto_fornitore'
+                    text: 'Sconto_fornitore',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'tolleranza',
-                    text: 'Tolleranza'
+                    text: 'Tolleranza',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_lordo',
-                    text: 'Prezzo_lordo'
+                    text: 'Prezzo_lordo',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'affiliato',
-                    text: 'Affiliato'
+                    text: 'Affiliato',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'affiliato_light',
-                    text: 'Affiliato_light'
+                    text: 'Affiliato_light',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'somministrato',
-                    text: 'Somministrato'
+                    text: 'Somministrato',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_affiliato',
-                    text: 'Prezzo_affiliato'
+                    text: 'Prezzo_affiliato',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_affiliato_light',
-                    text: 'Prezzo_affiliato_light'
+                    text: 'Prezzo_affiliato_light',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_somministrato',
-                    text: 'Prezzo_somministrato'
+                    text: 'Prezzo_somministrato',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'scadenza',
-                    text: 'Scadenza'
+                    text: 'Scadenza',
+                    editor: {
+                        xtype: 'datefield'
+                    }
                 }
             ]
         });

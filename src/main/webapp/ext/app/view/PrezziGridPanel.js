@@ -32,37 +32,58 @@ Ext.define('ClothoExtXml.view.PrezziGridPanel', {
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_from',
-                    text: 'Prezzo_from'
+                    text: 'Prezzo_from',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_to',
-                    text: 'Prezzo_to'
+                    text: 'Prezzo_to',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'netto_lordo',
-                    text: 'Netto_lordo'
+                    text: 'Netto_lordo',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_affiliato',
-                    text: 'Prezzo_affiliato'
+                    text: 'Prezzo_affiliato',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_affiliato_light',
-                    text: 'Prezzo_affiliato_light'
+                    text: 'Prezzo_affiliato_light',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'prezzo_somministrato',
-                    text: 'Prezzo_somministrato'
+                    text: 'Prezzo_somministrato',
+                    editor: {
+                        xtype: 'numberfield'
+                    }
                 },
                 {
                     xtype: 'datecolumn',
                     dataIndex: 'scadenza',
-                    text: 'Scadenza'
+                    text: 'Scadenza',
+                    editor: {
+                        xtype: 'datefield'
+                    }
                 }
             ]
         });
